@@ -9,10 +9,10 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className='w-[58px] bg-blue-theme h-screen gap-8 flex absolute left-0 justify-center flex-col items-center rounded-r-[48px]'>
+    <aside className='w-[58px] bg-blue-theme h-screen gap-8 flex fixed left-0 top-0 justify-center flex-col items-center rounded-r-[48px]'>
       {items.map((item) => (
         <div key={item.id}>
-          <img src={`/assets/icons/${item.icon}`} className='h-8 w-8' />
+          <img src={`assets/icons/${item.icon}`} className='h-8 w-8' />
         </div>
       ))}
     </aside>
