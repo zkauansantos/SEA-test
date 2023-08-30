@@ -2,7 +2,7 @@ import CommentBlock from "./components/CommentBlock";
 import Sidebar from "./components/Sidebar";
 
 import "../styles/styles.css";
-// import EmployeesList from "./components/EmployeesList";
+import EmployeesList from "./components/EmployeesList";
 import MultiStep from "./components/MultiStep";
 import Form from "./components/Form";
 

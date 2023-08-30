@@ -14,7 +14,7 @@ export default function CommentBlock() {
         Phasellus tempor tellus eu vulputate tempus.
       </p>
 
-      <img src={person} alt='person-illustration' className='absolute bottom-[-58px]' />
+      <img src={person} alt='person-illustration' className='absolute bottom-[-59px]' />
     </div>
   );
 }

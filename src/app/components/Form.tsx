@@ -3,6 +3,7 @@ import { useState } from "react";
 import Switch from "react-switch";
 import Input from "./Input";
 import Select from "./Select";
+import Checkbox from "./Checkbox";
 
 export default function Form() {
   const [isActive, setIsActive] = useState(false);
@@ -41,7 +42,15 @@ export default function Form() {
             </div>
 
             <div className='flex flex-col items-center justify-center gap-3 w-full'>
-              <Input label='Sexo' />
+              <div className='flex flex-col gap-4 items-start justify-center w-full'>
+                <span>Sexo</span>
+
+                <div className="flex items-center gap-8">
+                  <Checkbox label='Masculino' />
+                  <Checkbox label='Feminino' />
+                </div>
+              </div>
+              
               <Input label='Data de Nascimento' />
               <Select label='Cargo' />
             </div>
@@ -88,10 +97,7 @@ export default function Form() {
             </span>
 
             <div className='flex flex-col gap-3 mt-3'>
-              <Input
-                placeholder='Documento 1.png'
-                className='h-[36px]'
-              />
+              <Input placeholder='Documento 1.png' className='h-[36px]' />
 
               <button className='border border-blue-theme w-full h-[36px] rounded-[10px]'>
                 Selecionar arquivo
