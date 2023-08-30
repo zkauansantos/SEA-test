@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import Switch from "react-switch";
 import Input from "./Input";
+import Select from "./Select";
 
 export default function Form() {
   const [isActive, setIsActive] = useState(false);
@@ -42,7 +43,7 @@ export default function Form() {
             <div className='flex flex-col items-center justify-center gap-3 w-full'>
               <Input label='Sexo' />
               <Input label='Data de Nascimento' />
-              <Input label='Cargo' />
+              <Select label='Cargo' />
             </div>
           </div>
 
@@ -52,29 +53,27 @@ export default function Form() {
             </span>
 
             <div className='my-3'>
-              <label htmlFor='' className='flex items-center gap-1'>
-                <input type='checkbox' name='' id='' />O trabalhador não usa
-                EPI.
+              <label htmlFor='tal' className='flex items-center gap-1'>
+                <input type='checkbox' id='tal' />O trabalhador não usa EPI.
               </label>
             </div>
 
             <div className='w-full border border-blue-theme h-[159px] rounded-[10px] px-3 py-2'>
               <div>
-                <span className='mb-2'>Selecione a atividade:</span>
-                <Input placeholder='Ativd. 1' />
+                <Select label='Selecione a atividade' />
               </div>
 
               <div className='flex items-center gap-3 mt-3'>
-                <div>
-                  <span className='mb-2'>Selecione o EPI:</span>
-                  <Input placeholder='Calçado de segurança' />
+                <div className='w-full'>
+                  <Select label='Selecione a atividade' />
                 </div>
-                <div>
+
+                <div className='w-full'>
                   <span className='mb-2'>Informe o número do CA:</span>
                   <Input placeholder='9352' />
                 </div>
 
-                <button className='mt-3'>Adicionar EPI</button>
+                <button className='mt-3 w-full'>Adicionar EPI</button>
               </div>
             </div>
 
@@ -89,9 +88,9 @@ export default function Form() {
             </span>
 
             <div className='flex flex-col gap-3 mt-3'>
-              <input
+              <Input
                 placeholder='Documento 1.png'
-                className='outline-none border border-blue-theme w-full rounded-[10px] h-[36px]'
+                className='h-[36px]'
               />
 
               <button className='border border-blue-theme w-full h-[36px] rounded-[10px]'>

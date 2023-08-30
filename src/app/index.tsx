@@ -2,9 +2,9 @@ import CommentBlock from "./components/CommentBlock";
 import Sidebar from "./components/Sidebar";
 
 import "../styles/styles.css";
-import EmployeesList from "./components/EmployeesList";
+// import EmployeesList from "./components/EmployeesList";
 import MultiStep from "./components/MultiStep";
-// import Form from "./components/Form";
+import Form from "./components/Form";
 
 export default function App() {
   return (
@@ -17,8 +17,8 @@ export default function App() {
 
       <div className='h-full w-full flex items-baseline gap-[34px] mb-[59px]'>
         <CommentBlock />
-        <EmployeesList />
-        {/* <Form/> */}
+        {/* <EmployeesList /> */}
+        <Form/>
       </div>
     </div>
   );
