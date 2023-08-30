@@ -6,7 +6,7 @@ export default function EmployeesList() {
   const [isConclused, setIsConclused] = useState(false);
 
   return (
-    <div className='w-full h-full flex flex-col gap-[35px] rounded-[20px] overflow-hidden bg-white shadow-[0px_11px_20px_0px_rgba(0,0,0,0.1)]'>
+    <div className='w-full max-h-[484px] h-full flex flex-col gap-[35px] rounded-[20px] overflow-hidden bg-white shadow-[0px_11px_20px_0px_rgba(0,0,0,0.1)]'>
       <header className=' bg-blue-theme w-full pl-5 py-2'>
         <h2 className='text-white text-[28px]'>Funcionário(s)</h2>
       </header>

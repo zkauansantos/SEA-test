@@ -2,7 +2,7 @@ import person from "../../assets/icons/person.svg";
 
 export default function CommentBlock() {
   return (
-    <div className='rounded-[20px] w-full max-w-[446px] h-full bg-white px-[14px] py-[26px] relative shadow-[0px_11px_20px_0px_rgba(0,0,0,0.2)]'>
+    <div className='rounded-[20px] max-h-[484px] w-full max-w-[446px] h-full bg-white px-[14px] py-[26px] relative shadow-[0px_11px_20px_0px_rgba(0,0,0,0.2)]'>
       <p className="text-gray-theme100">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In suscipit
         suscipit porttitor. Suspendisse ex lorem, rhoncus nec ante eu, venenatis
