@@ -1,28 +1,74 @@
-import { ComponentProps } from "react";
+import * as RdxSelect from "@radix-ui/react-select";
 import cn from "../../utils/cn";
+import { useState } from "react";
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
-interface SelectProps extends ComponentProps<"select"> {
-  label?: string;
+interface SelectProps {
   className?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+  placeholder?: string;
+  options: {
+    value: string;
+    label: string;
+  }[];
 }
 
-export default function Select({ label, className, ...props }: SelectProps) {
+export default function Select({
+  className,
+  options,
+  value,
+  onChange,
+}: SelectProps) {
+  const [, setSelectedValue] = useState(value);
+
+  function handleSelect(value: string) {
+    setSelectedValue(value);
+    onChange?.(value);
+  }
+
   return (
-    <label
-      htmlFor='id'
-      className='flex flex-col items-start justify-start w-full'
-    >
-      {label}
-      <select
-        {...props}
-        id='id'
-        className={cn(
-          "outline-none border bg-transparent border-blue-theme w-full rounded-[10px] h-[41px]",
-          className
-        )}
-      >
-        <option>Eletricista</option>
-      </select>
-    </label>
+    <div>
+      <div className='relative'>
+        <RdxSelect.Root onValueChange={handleSelect} value={value}>
+          <RdxSelect.Trigger
+            className={cn(
+              "w-full rounded-[10px] border border-blue-theme px-3 h-[36px] outline-none text-left",
+              className
+            )}
+          >
+            <RdxSelect.Value />
+
+            <RdxSelect.Icon className='absolute right-3 top-1/2 -translate-y-1/2'>
+              <ChevronDownIcon className=' text-gray-800' />
+            </RdxSelect.Icon>
+          </RdxSelect.Trigger>
+
+          <RdxSelect.Portal>
+            <RdxSelect.Content className='overflow-hidden mt-12 bg-white rounded-[10px] border border-blue-theme shadow-[0px_11px_20px_0px_rgba(0,0,0,0.25)]'>
+              <RdxSelect.ScrollUpButton className='flex items-center justify-center  bg-white text-gray-800 cursor-default'>
+                <ChevronUpIcon />
+              </RdxSelect.ScrollUpButton>
+
+              <RdxSelect.Viewport className='p-2'>
+                {options.map((opt) => (
+                  <RdxSelect.Item
+                    key={Math.random()}
+                    value={opt.value}
+                    className='data-[state=checked]:font-bold data-[highlighted]:bg-gray-50 rounded-lg outline-none p-2 text-sm'
+                  >
+                    <RdxSelect.ItemText>{opt.label}</RdxSelect.ItemText>
+                  </RdxSelect.Item>
+                ))}
+              </RdxSelect.Viewport>
+
+              <RdxSelect.ScrollDownButton className='flex items-center justify-center  bg-white text-gray-800 cursor-default'>
+                <ChevronDownIcon />
+              </RdxSelect.ScrollDownButton>
+            </RdxSelect.Content>
+          </RdxSelect.Portal>
+        </RdxSelect.Root>
+      </div>
+    </div>
   );
 }

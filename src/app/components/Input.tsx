@@ -18,7 +18,7 @@ export default function Input({ label, className, ...props }: InputProps) {
         type='text'
         id='id'
         className={cn(
-          "outline-none border border-blue-theme w-full rounded-[10px] h-[41px] px-2",
+          "outline-none border border-blue-theme w-full rounded-[10px] h-[36px] px-2",
           className
         )}
       />

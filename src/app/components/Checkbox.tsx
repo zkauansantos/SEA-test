@@ -1,14 +1,29 @@
-import { ComponentProps } from "react";
+import * as RadioGroup from "@radix-ui/react-radio-group";
 
-interface CheckboxProps extends ComponentProps<"input"> {
-  label?: string;
+interface RadioProps {
+  options: {
+    value: string;
+    label: string;
+  }[];
 }
 
-export default function Checkbox({ label, ...props }: CheckboxProps) {
+export default function Radio({ options }: RadioProps) {
   return (
-    <label htmlFor='check' className="flex items-center gap-2">
-      <input type='checkbox' id='check' {...props}/>
-      {label}
-    </label>
+    <RadioGroup.Root
+      className='flex items-center gap-4'
+      defaultValue='default'
+      aria-label='View density'
+    >
+      {options.map((opt) => (
+        <div key={opt.value} className='flex items-center gap-2'>
+          <RadioGroup.Item
+            className='bg-white w-[12px] h-[12px] rounded-full border border-blue-theme outline-none cursor-default data-[state=checked]:bg-blue-theme'
+            value={opt.value}
+            id={opt.label}
+          />
+          <label htmlFor={opt.label}>{opt.label}</label>
+        </div>
+      ))}
+    </RadioGroup.Root>
   );
 }

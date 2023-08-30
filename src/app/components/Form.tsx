@@ -45,14 +45,22 @@ export default function Form() {
               <div className='flex flex-col gap-4 items-start justify-center w-full'>
                 <span>Sexo</span>
 
-                <div className="flex items-center gap-8">
-                  <Checkbox label='Masculino' />
-                  <Checkbox label='Feminino' />
+                <div className='flex items-center gap-8'>
+                  <Checkbox
+                    options={[
+                      { value: "M", label: "Masculino" },
+                      { value: "F", label: "Feminino" },
+                    ]}
+                  />
                 </div>
               </div>
-              
+
               <Input label='Data de Nascimento' />
-              <Select label='Cargo' />
+
+              <div className='w-full'>
+                <span>Cargo</span>
+                <Select options={[{ value: "1", label: "Eletricista" }]} />
+              </div>
             </div>
           </div>
 
@@ -69,20 +77,26 @@ export default function Form() {
 
             <div className='w-full border border-blue-theme h-[159px] rounded-[10px] px-3 py-2'>
               <div>
-                <Select label='Selecione a atividade' />
+                <span>Selecione a atividade</span>
+                <Select options={[{ value: "2", label: "Carpinteiro" }]} />
               </div>
 
               <div className='flex items-center gap-3 mt-3'>
-                <div className='w-full'>
-                  <Select label='Selecione a atividade' />
+                <div className='w-full max-w-[266px]'>
+                  <span>Selecione o EPI:</span>
+
+                  <Select
+                    placeholder='Selecione a atividade'
+                    options={[{ value: "3", label: "Calçado de segurança" }]}
+                  />
                 </div>
 
-                <div className='w-full'>
+                <div className='w-full max-w-[266px]'>
                   <span className='mb-2'>Informe o número do CA:</span>
                   <Input placeholder='9352' />
                 </div>
 
-                <button className='mt-3 w-full'>Adicionar EPI</button>
+                <button className='mt-3 flex-1 '>Adicionar EPI</button>
               </div>
             </div>
 

@@ -13,11 +13,11 @@ export default function MultiStep() {
 
       <div className=' flex items-center justify-between w-full px-[30px] z-10'>
         {steps.map((step) => (
-          <div className='flex flex-col items-center justify-center gap-3'>
-            <div
-              key={step.id}
-              className='grid place-items-center gap-4 h-[70px] w-[70px] rounded-[20px] bg-blue-theme shadow-[0px_4px_2px_0px_rgba(0,0,0,0.25)]'
-            >
+          <div
+            key={step.id}
+            className='flex flex-col items-center justify-center gap-3'
+          >
+            <div className='grid place-items-center gap-4 h-[70px] w-[70px] rounded-[20px] bg-blue-theme shadow-[0px_4px_2px_0px_rgba(0,0,0,0.25)]'>
               <img src={stepIcon} alt='step-icon' />
             </div>
             <span className='text-gray-theme100'>{step.label}</span>
