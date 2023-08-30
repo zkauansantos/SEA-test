@@ -1,10 +1,13 @@
-import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import Switch from "react-switch";
-import Input from "./Input";
-import Select from "./Select";
-import Checkbox from "./Checkbox";
-import Radio from "./Radio";
+
+import { ArrowLeft } from "lucide-react";
+
+import Button from "../Button";
+import Input from "./components/Input";
+import Select from "./components/Select";
+import Checkbox from "./components/Checkbox";
+import Radio from "./components/Radio";
 
 export default function Form() {
   const [isActive, setIsActive] = useState(false);
@@ -95,16 +98,21 @@ export default function Form() {
                   <Input placeholder='9352' />
                 </div>
 
-                <button className='mt-3 flex-1 '>Adicionar EPI</button>
+                <Button
+                  className='mt-3 flex-1 border-none bg-transparent'
+                  type='button'
+                >
+                  Adicionar EPI
+                </Button>
               </div>
             </div>
 
-            <button className='border border-blue-theme w-full h-[36px] mt-[10px] rounded-[10px]'>
+            <Button className='mt-[10px]' type='button'>
               Adicionar outra atividade
-            </button>
+            </Button>
           </div>
 
-          <div className='mt-6 gap-6 w-full border border-blue-theme h-[135px] rounded-[10px] px-3 py-2'>
+          <div className='mt-6 w-full border border-blue-theme h-[138px] rounded-[10px] px-3 py-2'>
             <span className='font-medium text-gray-theme300'>
               Adicione Atestado de Saúde Ocupacional (opicional):
             </span>
@@ -112,15 +120,13 @@ export default function Form() {
             <div className='flex flex-col gap-3 mt-3'>
               <Input placeholder='Documento 1.png' className='h-[36px]' />
 
-              <button className='border border-blue-theme w-full h-[36px] rounded-[10px]'>
+              <Button type='button' className='mt-0'>
                 Selecionar arquivo
-              </button>
+              </Button>
             </div>
           </div>
 
-          <button className='border border-blue-theme w-full h-[36px] mt-3 rounded-[10px]'>
-            Salvar
-          </button>
+          <Button type='submit'>Salvar</Button>
         </form>
       </div>
     </div>
