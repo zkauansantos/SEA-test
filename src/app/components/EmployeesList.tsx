@@ -36,7 +36,7 @@ export default function EmployeesList() {
               className='relative flex items-baseline w-full pl-[15px] h-[84px] justify-between rounded-[10px] bg-blue-theme0 overflow-hidden'
             >
               <div className='flex flex-col gap-2 '>
-                <p className='text-gray-theme100 text-2xl '>
+                <p className='text-gray-theme100 text-2xl mt-1'>
                   Daniel Alves da Silva
                 </p>
 

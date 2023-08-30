@@ -10,7 +10,7 @@ export default function App() {
     <div className='pr-[34px] pl-[92px] flex flex-col items-center justify-center h-full gap-8'>
       <Sidebar />
 
-      <div className='h-full max-h-[158px] mt-[33px] grid place-items-center w-full bg-white rounded-[20px] shadow-[0px_11px_20px_0px_rgba(0,0,0,0.1)]'>
+      <div className='h-full max-h-[158px] mt-[33px] grid place-items-center w-full bg-white rounded-[20px] hadow-[0px_11px_20px_0px_rgba(0,0,0,0.1)] relative'>
         <MultiStep />
       </div>
 
