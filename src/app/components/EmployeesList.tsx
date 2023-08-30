@@ -6,35 +6,34 @@ export default function EmployeesList() {
   const [isConclused, setIsConclused] = useState(false);
 
   return (
-    <div className='w-full h-full flex flex-col gap-[35px] rounded-[20px] overflow-hidden bg-white '>
-      <header className=' bg-blue-theme w-full pl-5 py-3'>
+    <div className='w-full h-full flex flex-col gap-[35px] rounded-[20px] overflow-hidden bg-white shadow-[0px_11px_20px_0px_rgba(0,0,0,0.1)]'>
+      <header className=' bg-blue-theme w-full pl-5 py-2'>
         <h2 className='text-white text-[28px]'>Funcionário(s)</h2>
       </header>
 
       <div className='px-4'>
-        <button className='w-full border border-blue-theme rounded-[10px] py-6 flex items-center justify-center gap-2 text-blue-theme'>
+        <button className='w-full border border-blue-theme rounded-[10px] h-[60px] flex items-center justify-center gap-2 text-blue-theme'>
           <Plus />
           <span>Adicionar funcionário</span>
         </button>
 
-        <div className='w-full flex items-start justify-start gap-4 mt-5 text-blue-theme text-sm'>
-          <button className='border-blue-theme border py-2 px-10 rounded-[10px]'>
+        <div className='w-full flex items-start justify-start gap-4 mt-5 text-blue-theme text-sm relative'>
+          <button className='border-blue-theme border h-[32px] px-10 rounded-[10px]'>
             Ver apenas ativos
           </button>
-          <button className='border-blue-theme border py-2 px-10 rounded-[10px]'>
+          <button className='border-blue-theme border h-[32px] px-10 rounded-[10px]'>
             Limpar Filtros
           </button>
+
+          <span className='text-gray-theme200 absolute right-2 top-2.5'>Ativos 2/25</span>
         </div>
 
-        <div className='w-full text-end'>
-          <span className='text-gray-theme200 text-sm'>Ativos 2/25</span>
-        </div>
 
-        <div className='overflow-y-auto space-y-2 h-[220px] w-full mt-5 gap-2'>
+        <div className='overflow-y-auto space-y-2 h-[180px] w-full mt-5 gap-2'>
           {Array.from(Array(5)).map((_, i) => (
             <div
               key={i}
-              className='relative flex items-baseline w-full pl-[15px] py-3 justify-between rounded-[10px] bg-blue-theme0 overflow-hidden'
+              className='relative flex items-baseline w-full pl-[15px] h-[84px] justify-between rounded-[10px] bg-blue-theme0 overflow-hidden'
             >
               <div className='flex flex-col gap-2 '>
                 <p className='text-gray-theme100 text-2xl '>
