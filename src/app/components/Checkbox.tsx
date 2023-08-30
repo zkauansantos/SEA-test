@@ -1,29 +1,20 @@
-import * as RadioGroup from "@radix-ui/react-radio-group";
+import * as RdxCheckbox from "@radix-ui/react-checkbox";
+import { useState } from "react";
 
-interface RadioProps {
-  options: {
-    value: string;
-    label: string;
-  }[];
-}
+interface CheckboxProps extends RdxCheckbox.CheckboxProps {}
 
-export default function Radio({ options }: RadioProps) {
+export default function Checkbox({ placeholder, ...props }: CheckboxProps) {
+  const [, setIsChecked] = useState(false);
+
   return (
-    <RadioGroup.Root
-      className='flex items-center gap-4'
-      defaultValue='default'
-      aria-label='View density'
-    >
-      {options.map((opt) => (
-        <div key={opt.value} className='flex items-center gap-2'>
-          <RadioGroup.Item
-            className='bg-white w-[12px] h-[12px] rounded-full border border-blue-theme outline-none cursor-default data-[state=checked]:bg-blue-theme'
-            value={opt.value}
-            id={opt.label}
-          />
-          <label htmlFor={opt.label}>{opt.label}</label>
-        </div>
-      ))}
-    </RadioGroup.Root>
+    <div className='flex items-center gap-2'>
+      <RdxCheckbox.Root
+        {...props}
+        className='flex border border-blue-theme h-[20px] w-[20px] appearance-none items-center justify-center rounded-[8px] outline-none data-[state=checked]:bg-blue-theme '
+        id={placeholder}
+        onCheckedChange={(v) => setIsChecked(v as boolean)}
+      />
+      <label htmlFor={placeholder}>{placeholder}</label>
+    </div>
   );
 }

@@ -4,6 +4,7 @@ import Switch from "react-switch";
 import Input from "./Input";
 import Select from "./Select";
 import Checkbox from "./Checkbox";
+import Radio from "./Radio";
 
 export default function Form() {
   const [isActive, setIsActive] = useState(false);
@@ -46,7 +47,7 @@ export default function Form() {
                 <span>Sexo</span>
 
                 <div className='flex items-center gap-8'>
-                  <Checkbox
+                  <Radio
                     options={[
                       { value: "M", label: "Masculino" },
                       { value: "F", label: "Feminino" },
@@ -70,9 +71,7 @@ export default function Form() {
             </span>
 
             <div className='my-3'>
-              <label htmlFor='tal' className='flex items-center gap-1'>
-                <input type='checkbox' id='tal' />O trabalhador não usa EPI.
-              </label>
+              <Checkbox placeholder='O trabalhador não usa EPI.' />
             </div>
 
             <div className='w-full border border-blue-theme h-[159px] rounded-[10px] px-3 py-2'>
