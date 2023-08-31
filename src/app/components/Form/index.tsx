@@ -1,6 +1,5 @@
-import { useState } from "react";
 import Switch from "react-switch";
-
+import { Controller } from "react-hook-form";
 import { ArrowLeft } from "lucide-react";
 
 import Button from "../Button";
@@ -8,41 +7,74 @@ import Input from "./components/Input";
 import Select from "./components/Select";
 import Checkbox from "./components/Checkbox";
 import Radio from "./components/Radio";
+import useFormController from "./useFormController";
+import DatePickerInput from "./components/DatePickerInput";
 
-export default function Form() {
-  const [isActive, setIsActive] = useState(false);
+interface FormProps {
+  onBackDashBoard: () => void;
+}
+
+export default function Form({ onBackDashBoard }: FormProps) {
+  const { control, handleSubmit, register, errors } = useFormController();
 
   return (
     <div className='flex-1 rounded-[20px] overflow-hidden bg-white shadow-[0px_11px_20px_0px_rgba(0,0,0,0.1)]'>
       <header className=' bg-blue-theme w-full pl-5 py-2 text-white text-[28px] flex items-center gap-2'>
-        <ArrowLeft />
+        <button onClick={onBackDashBoard}>
+          <ArrowLeft />
+        </button>
         <h2>Adicionar funcionário</h2>
       </header>
 
-      <div className='px-4 pb-6'>
+      <div className='px-4 pb-6' onSubmit={handleSubmit}>
         <form>
           <div className='mt-4 h-[43px] px-3 flex items-center justify-between rounded-[10px] border border-blue-theme w-full'>
             <span>O trabalhador está ativo ou inativo ?</span>
 
-            <Switch
-              onChange={() => setIsActive((prev) => !prev)}
-              checked={isActive}
-              checkedIcon={<></>}
-              uncheckedIcon={<></>}
-              height={20}
-              handleDiameter={16}
-              offHandleColor='#4FA1C1'
-              onHandleColor='#4FA1C1'
-              offColor='#DBDBDB'
-              onColor='#DBDBDB'
+            <Controller
+              control={control}
+              name='isActive'
+              defaultValue={true}
+              render={({ field: { onChange, value } }) => (
+                <Switch
+                  onChange={(newValue) => onChange(newValue)}
+                  checked={Boolean(value)}
+                  checkedIcon={
+                    <span className='text-xs left-2 top-1 absolute'>ativo</span>
+                  }
+                  uncheckedIcon={
+                    <span className='text-xs right-0.5 top-0.5 absolute'>
+                      inativo
+                    </span>
+                  }
+                  height={20}
+                  handleDiameter={16}
+                  offHandleColor='#4FA1C1'
+                  onHandleColor='#4FA1C1'
+                  offColor='#DBDBDB'
+                  onColor='#DBDBDB'
+                />
+              )}
             />
           </div>
 
-          <div className='mt-6 grid-cols-2 gap-6 grid w-full border border-blue-theme h-[235px] rounded-[10px] px-3 py-2'>
+          <div className='mt-6 grid-cols-2 place-items-start gap-6 grid w-full border border-blue-theme min-h-[235px] rounded-[10px] px-3 py-2'>
             <div className='flex flex-col items-center justify-center gap-3 w-full'>
-              <Input label='Nome' />
-              <Input label='CPF' />
-              <Input label='RG' />
+              <Input
+                label='Nome'
+                {...register("name")}
+                error={errors.name?.message}
+              />
+              <Input
+                label='CPF'
+                {...register("cpf")}
+                error={errors.cpf?.message}
+              />
+              <Input
+                label='RG'
+                {...register("rg")}
+                error={errors.rg?.message}
+              />
             </div>
 
             <div className='flex flex-col items-center justify-center gap-3 w-full'>
@@ -50,56 +82,117 @@ export default function Form() {
                 <span>Sexo</span>
 
                 <div className='flex items-center gap-8'>
-                  <Radio
-                    options={[
-                      { value: "M", label: "Masculino" },
-                      { value: "F", label: "Feminino" },
-                    ]}
+                  <Controller
+                    control={control}
+                    name='genre'
+                    render={({ field: { onChange } }) => (
+                      <Radio
+                        error={errors.name?.message}
+                        onChange={onChange}
+                        options={[
+                          { value: "M", label: "Masculino" },
+                          { value: "F", label: "Feminino" },
+                        ]}
+                      />
+                    )}
                   />
                 </div>
               </div>
 
-              <Input label='Data de Nascimento' />
+              <Controller
+                control={control}
+                defaultValue={new Date(2000, 5)}
+                name='dateOfBirth'
+                render={({ field: { value, onChange } }) => (
+                  <DatePickerInput onChange={onChange} value={value} />
+                )}
+              />
 
               <div className='w-full'>
                 <span>Cargo</span>
-                <Select options={[{ value: "1", label: "Eletricista" }]} />
+                <Controller
+                  control={control}
+                  name='empPosition'
+                  render={({ field: { onChange, value } }) => (
+                    <Select
+                      error={errors.empPosition?.message}
+                      onChange={onChange}
+                      value={value}
+                      options={[{ value: "1", label: "Eletricista" }]}
+                    />
+                  )}
+                />
               </div>
             </div>
           </div>
 
-          <div className='mt-6 gap-6 w-full border border-blue-theme h-[294px] rounded-[10px] px-3 py-2'>
+          <div className='mt-6 gap-6 w-full border border-blue-theme min-h-[294px] rounded-[10px] px-3 py-2'>
             <span className='font-medium text-gray-theme300'>
               Quais EPIs o trabalhador usa na atividade?
             </span>
 
             <div className='my-3'>
-              <Checkbox placeholder='O trabalhador não usa EPI.' />
+              <Controller
+                control={control}
+                name='usesEPI'
+                defaultValue={true}
+                render={({ field: { onChange } }) => (
+                  <Checkbox
+                    onChanges={onChange}
+                    placeholder='O trabalhador não usa EPI.'
+                  />
+                )}
+              />
             </div>
 
-            <div className='w-full border border-blue-theme h-[159px] rounded-[10px] px-3 py-2'>
+            <div className='w-full border border-blue-theme min-h-[159px] rounded-[10px] px-3 py-2'>
               <div>
                 <span>Selecione a atividade</span>
-                <Select options={[{ value: "2", label: "Carpinteiro" }]} />
+                <Controller
+                  control={control}
+                  name='activity'
+                  render={({ field: { onChange, value } }) => (
+                    <Select
+                      error={errors.activity?.message}
+                      onChange={onChange}
+                      value={value}
+                      options={[{ value: "2", label: "Carpinteiro" }]}
+                    />
+                  )}
+                />
               </div>
 
-              <div className='flex items-center gap-3 mt-3'>
+              <div className='flex items-start gap-3 mt-3'>
                 <div className='w-full max-w-[266px]'>
                   <span>Selecione o EPI:</span>
 
-                  <Select
-                    placeholder='Selecione a atividade'
-                    options={[{ value: "3", label: "Calçado de segurança" }]}
+                  <Controller
+                    control={control}
+                    name='EPI'
+                    render={({ field: { onChange, value } }) => (
+                      <Select
+                        error={errors.EPI?.message}
+                        onChange={onChange}
+                        value={value}
+                        options={[
+                          { value: "3", label: "Calçado de Segurança" },
+                        ]}
+                      />
+                    )}
                   />
                 </div>
 
                 <div className='w-full max-w-[266px]'>
                   <span className='mb-2'>Informe o número do CA:</span>
-                  <Input placeholder='9352' />
+                  <Input
+                    placeholder='9352'
+                    {...register("numberCA")}
+                    error={errors.numberCA?.message}
+                  />
                 </div>
 
                 <Button
-                  className='mt-3 flex-1 border-none bg-transparent'
+                  className='mt-6 flex-1 border-none bg-transparent'
                   type='button'
                 >
                   Adicionar EPI

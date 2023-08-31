@@ -3,12 +3,13 @@ import * as RdxSelect from "@radix-ui/react-select";
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
 import cn from "../../../../utils/cn";
+import ErrorFeedback from "../../ErrorFeedback";
 
 interface SelectProps {
   className?: string;
   value?: string;
+  error?: string;
   onChange?: (value: string) => void;
-  placeholder?: string;
   options: {
     value: string;
     label: string;
@@ -19,6 +20,7 @@ export default function Select({
   className,
   options,
   value,
+  error,
   onChange,
 }: SelectProps) {
   const [, setSelectedValue] = useState(value);
@@ -35,7 +37,8 @@ export default function Select({
           <RdxSelect.Trigger
             className={cn(
               "w-full rounded-[10px] border border-blue-theme px-3 h-[36px] outline-none text-left",
-              className
+              className,
+              error && "!border-red-900"
             )}
           >
             <RdxSelect.Value />
@@ -70,6 +73,8 @@ export default function Select({
           </RdxSelect.Portal>
         </RdxSelect.Root>
       </div>
+
+      {error && <ErrorFeedback message={error} />}
     </div>
   );
 }

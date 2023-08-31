@@ -5,9 +5,12 @@ import "../styles/styles.css";
 import EmployeesList from "./components/EmployeesList";
 import MultiStep from "./components/MultiStep";
 import Button from "./components/Button";
-// import Form from "./components/Form";
+import { useState } from "react";
+import Form from "./components/Form";
 
 export default function App() {
+  const [formIsVisible, setFormIsVisible] = useState(false);
+
   return (
     <div className='pr-[34px] pl-[92px] flex flex-col items-start justify-start h-full gap-8'>
       <Sidebar />
@@ -18,13 +21,19 @@ export default function App() {
 
       <div className='h-full w-full flex items-baseline gap-[34px] mb-[59px]'>
         <CommentBlock />
-        <EmployeesList />
-        {/* <Form/> */}
+        {!formIsVisible && (
+          <EmployeesList onShowForm={() => setFormIsVisible(true)} />
+        )}
+        {formIsVisible && (
+          <Form onBackDashBoard={() => setFormIsVisible(false)} />
+        )}
       </div>
 
-      <Button className='absolute right-10 bottom-2 max-w-[194px] bg-blue-theme text-white text-xs font-bold hover:bg-blue-theme/80'>
-        Próximo passo
-      </Button>
+      {!formIsVisible && (
+        <Button className='absolute right-10 bottom-2 max-w-[194px] bg-blue-theme text-white text-xs font-bold hover:bg-blue-theme/80'>
+          Próximo passo
+        </Button>
+      )}
     </div>
   );
 }

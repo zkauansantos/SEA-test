@@ -3,6 +3,7 @@ import * as Popover from "@radix-ui/react-popover";
 import cn from "../../../../utils/cn";
 import formatDate from "../../../../utils/formatDate";
 import DatePicker from "../../DatePicker";
+import ErrorFeedback from "../../ErrorFeedback";
 
 interface DatePickerInputProps {
   className?: string;
@@ -15,8 +16,11 @@ export default function DatePickerInput({
   className,
   error,
   onChange,
+  value,
 }: DatePickerInputProps) {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    value ?? undefined
+  );
 
   function handleChangeDate(date: Date) {
     setSelectedDate(date);
@@ -48,6 +52,8 @@ export default function DatePickerInput({
           />
         </Popover.Content>
       </Popover.Root>
+
+      {error && <ErrorFeedback message={error} />}
     </div>
   );
 }
