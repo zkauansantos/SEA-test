@@ -1,8 +1,9 @@
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import Switch from "react-switch";
-import Button from "./Button";
-import EmployeeCard from "./EmployeeCard";
+import Button from "../Button";
+import EmployeeCard from "../EmployeeCard";
+import useEmployeesListController from "./useEmployeesListController";
 
 interface EmployeesListProps {
   onShowForm: () => void;
@@ -10,6 +11,7 @@ interface EmployeesListProps {
 
 export default function EmployeesList({ onShowForm }: EmployeesListProps) {
   const [isConclused, setIsConclused] = useState(false);
+  const { users } = useEmployeesListController();
 
   return (
     <div className='w-full h-full max-h-[487px] flex flex-col gap-[35px] rounded-[20px] overflow-hidden bg-white shadow-[0px_11px_20px_0px_rgba(0,0,0,0.1)]'>
@@ -38,8 +40,8 @@ export default function EmployeesList({ onShowForm }: EmployeesListProps) {
         </div>
 
         <div className='overflow-y-auto space-y-2 h-[180px] w-full mt-5 gap-2'>
-          {Array.from(Array(5)).map((_, i) => (
-            <EmployeeCard key={i} />
+          {users.map((user) => (
+            <EmployeeCard key={user.id} />
           ))}
         </div>
 
