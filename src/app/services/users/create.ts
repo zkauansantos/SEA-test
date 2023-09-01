@@ -1,15 +1,19 @@
 import { api } from "../api";
 
 export interface CreateUserParams {
-  nome?: string;
+  name?: string;
   cpf?: string;
   rg?: string;
   genre?: string;
-  dateOfBirth?: string;
+  dateOfBirth?: string | Date;
   empPosition?: string;
   usesEPI?: boolean;
   activity?: string;
-  EPI?: string;
+  EPIS?: Array<{
+    EPI?: string;
+    activity?: string;
+    numberCA?: string;
+  }>;
   numberCA?: string;
   isActive?: boolean;
 }
@@ -17,7 +21,17 @@ export interface CreateUserParams {
 export async function create(body: CreateUserParams) {
   const { data } = await api.post(
     "/users",
-    { body },
+    {
+      name: body.name,
+      cpf: body.cpf,
+      rg: body.rg,
+      genre: body.genre,
+      dateOfBirth: body.dateOfBirth,
+      empPosition: body.empPosition,
+      usesEPI: body.usesEPI,
+      EPIS: body.EPIS,
+      isActive: body.isActive,
+    },
     {
       headers: {
         "Content-Type": "application/json",

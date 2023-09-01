@@ -9,9 +9,11 @@ export interface GetAllResponse {
   dateOfBirth: string;
   empPosition: string;
   usesEPI: boolean;
-  activity: string;
-  EPI: string;
-  numberCA: string;
+  EPIS: Array<{
+    EPI: string;
+    activity: string;
+    numberCA: string;
+  }>;
   isActive: boolean;
 }
 

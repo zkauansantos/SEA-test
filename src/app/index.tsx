@@ -15,14 +15,14 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className='pr-[34px] pl-[92px] flex flex-col items-start justify-start h-full gap-8'>
+      <div className='pr-[34px] pl-[92px] flex flex-col items-start justify-start h-full'>
         <Sidebar />
 
         <div className='h-full max-h-[158px] py-6 mt-[33px] grid place-items-center w-full bg-white rounded-[20px] shadow-[0px_11px_20px_0px_rgba(0,0,0,0.1)] relative'>
           <MultiStep />
         </div>
 
-        <div className='flex-1 w-full flex items-baseline gap-[34px] mb-[59px]'>
+        <div className='mt-8 flex-1 w-full flex items-baseline gap-[34px]'>
           <CommentBlock />
           {!formIsVisible && (
             <EmployeesList onShowForm={() => setFormIsVisible(true)} />
@@ -33,9 +33,11 @@ export default function App() {
         </div>
 
         {!formIsVisible && (
-          <Button className='absolute right-10 bottom-2 max-w-[194px] bg-blue-theme text-white text-xs font-bold hover:bg-blue-theme/80'>
-            Próximo passo
-          </Button>
+          <div className='w-full flex justify-end pb-2 mt-1'>
+            <Button className='max-w-[194px] bg-blue-theme text-white text-xs font-bold hover:bg-blue-theme/80'>
+              Próximo passo
+            </Button>
+          </div>
         )}
       </div>
     </QueryClientProvider>
