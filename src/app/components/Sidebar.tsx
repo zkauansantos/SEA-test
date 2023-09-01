@@ -11,11 +11,11 @@ export default function Sidebar() {
           key={image.id}
           className={cn(
             'w-full flex justify-center relative',
-            index === 0 && 'opacity-80',
-            index !== 0 && 'cursor-not-allowed hover:opacity-80'
+            index === 1 && 'opacity-80',
+            index !== 1 && 'cursor-not-allowed hover:opacity-80'
           )}
         >
-          {index === 0 && (
+          {index === 1 && (
             <span className='bg-white absolute h-8 w-1.5 left-0'></span>
           )}
           <img src={image.icon} className='h-8 w-8' />
