@@ -42,6 +42,7 @@ type FormData = z.infer<typeof schema>;
 
 export default function useFormController() {
   const [notUsesEPIchecked, setNotUsesEPIchecked] = useState(false);
+  const [namePhotoSelected, setNamePhotoSelected] = useState("");
   const {
     control,
     register,
@@ -58,16 +59,31 @@ export default function useFormController() {
     }
   }, [notUsesEPIchecked, clearErrors]);
 
+  console.log({ errors });
+
+  function onSelectPhoto(photo: File | undefined) {
+    if (photo) {
+      if (["image/jpeg", "image/png", "image/jpg"].includes(photo.type)) {
+        setNamePhotoSelected(photo.name);
+        return;
+      }
+    }
+
+    setNamePhotoSelected("");
+  }
+
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     console.log(data);
   });
 
   return {
     notUsesEPIchecked,
-    setNotUsesEPIchecked,
-    handleSubmit,
-    register,
+    namePhotoSelected,
     control,
     errors,
+    setNotUsesEPIchecked,
+    onSelectPhoto,
+    handleSubmit,
+    register,
   };
 }

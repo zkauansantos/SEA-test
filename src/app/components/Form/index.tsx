@@ -17,12 +17,14 @@ interface FormProps {
 
 export default function Form({ onBackDashBoard }: FormProps) {
   const {
+    errors,
     control,
+    notUsesEPIchecked,
+    namePhotoSelected,
+    onSelectPhoto,
     handleSubmit,
     register,
-    errors,
     setNotUsesEPIchecked,
-    notUsesEPIchecked,
   } = useFormController();
 
   return (
@@ -243,11 +245,24 @@ export default function Form({ onBackDashBoard }: FormProps) {
             </span>
 
             <div className='flex flex-col gap-3 mt-3'>
-              <Input placeholder='Documento 1.png' className='h-[36px]' />
+              <Input placeholder={namePhotoSelected} className='h-[36px]' />
 
-              <Button type='button' className='mt-0'>
-                Selecionar arquivo
-              </Button>
+              <label
+                className={cn(
+                  "border border-blue-theme w-full h-[36px]",
+                  "relative rounded-[10px] hover:bg-blue-theme/20 transition-colors"
+                )}
+              >
+                <span className='absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2'>
+                  Selecionar Arquivo
+                </span>
+                <Input
+                  className='hidden'
+                  type='file'
+                  accept='image/*'
+                  onChange={(e) => onSelectPhoto(e.target.files?.[0])}
+                />
+              </label>
             </div>
           </div>
 
