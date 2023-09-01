@@ -12,7 +12,6 @@ interface EmployeesListProps {
 export default function EmployeesList({ onShowForm }: EmployeesListProps) {
   const [isConclused, setIsConclused] = useState(false);
   const { users } = useEmployeesListController();
-
   return (
     <div className='w-full h-full max-h-[487px] flex flex-col gap-[35px] rounded-[20px] overflow-hidden bg-white shadow-[0px_11px_20px_0px_rgba(0,0,0,0.1)]'>
       <header className=' bg-blue-theme w-full pl-5 py-2'>
@@ -41,7 +40,7 @@ export default function EmployeesList({ onShowForm }: EmployeesListProps) {
 
         <div className='overflow-y-auto space-y-2 h-[180px] w-full mt-5 gap-2'>
           {users.map((user) => (
-            <EmployeeCard key={user.id} />
+            <EmployeeCard key={user.id} user={user} />
           ))}
         </div>
 

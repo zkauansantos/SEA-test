@@ -2,7 +2,7 @@ import { api } from "../api";
 
 export interface GetAllResponse {
   id: number;
-  nome: string;
+  name: string;
   cpf: string;
   rg: string;
   genre: string;

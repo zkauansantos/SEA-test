@@ -1,22 +1,27 @@
+import { GetAllResponse } from "../services/users/getAll";
 import Button from "./Button";
 
-export default function EmployeeCard() {
+interface EmployeeCardProps {
+  user: GetAllResponse;
+}
+
+export default function EmployeeCard({ user }: EmployeeCardProps) {
   return (
     <div className='relative flex items-baseline w-full pl-[15px] h-[84px] justify-between rounded-[10px] bg-blue-theme0 overflow-hidden'>
       <div className='flex flex-col gap-2 '>
         <p className='text-gray-theme100 text-2xl mt-1'>
-          Daniel Alves da Silva
+          {user.name}
         </p>
 
         <div className='flex items-center gap-3'>
           <span className='bg-blue-theme rounded-[36px] py-1 px-4 text-white text-sm'>
-            000.000.000-99
+            {user.cpf}
           </span>
           <span className='bg-blue-theme rounded-[36px] py-1 px-4 text-white text-sm'>
-            000.000.000-99
+            {user.activity}
           </span>
           <span className='bg-blue-theme rounded-[36px] py-1 px-4 text-white text-sm'>
-            000.000.000-99
+            {user.empPosition}
           </span>
         </div>
       </div>

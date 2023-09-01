@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 1,
-      "nome": "Daniel Alves da silva",
+      "name": "Daniel Alves da silva",
       "cpf": "069.644.121.74",
       "rg": "3642742",
       "genre": "M",

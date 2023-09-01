@@ -43,6 +43,7 @@ type FormData = z.infer<typeof schema>;
 export default function useFormController() {
   const [notUsesEPIchecked, setNotUsesEPIchecked] = useState(false);
   const [namePhotoSelected, setNamePhotoSelected] = useState("");
+
   const {
     control,
     register,
