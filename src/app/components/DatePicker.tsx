@@ -13,7 +13,9 @@ export default function DatePicker({ onChange, value }: DatePickerProps) {
       locale={ptBR}
       selected={value}
       mode='single'
+      toYear={new Date().getFullYear() - 18}
       onSelect={(date) => onChange(date ?? new Date())}
+      pagedNavigation
       classNames={{
         root: 'w-full',
         caption: "flex items-center justify-between",

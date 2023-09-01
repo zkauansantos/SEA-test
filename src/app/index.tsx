@@ -19,7 +19,7 @@ export default function App() {
         <MultiStep />
       </div>
 
-      <div className='h-full w-full flex items-baseline gap-[34px] mb-[59px]'>
+      <div className='flex-1 w-full flex items-baseline gap-[34px] mb-[59px]'>
         <CommentBlock />
         {!formIsVisible && (
           <EmployeesList onShowForm={() => setFormIsVisible(true)} />

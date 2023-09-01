@@ -9,13 +9,21 @@ import Checkbox from "./components/Checkbox";
 import Radio from "./components/Radio";
 import useFormController from "./useFormController";
 import DatePickerInput from "./components/DatePickerInput";
+import cn from "../../../utils/cn";
 
 interface FormProps {
   onBackDashBoard: () => void;
 }
 
 export default function Form({ onBackDashBoard }: FormProps) {
-  const { control, handleSubmit, register, errors } = useFormController();
+  const {
+    control,
+    handleSubmit,
+    register,
+    errors,
+    setNotUsesEPIchecked,
+    notUsesEPIchecked,
+  } = useFormController();
 
   return (
     <div className='flex-1 rounded-[20px] overflow-hidden bg-white shadow-[0px_11px_20px_0px_rgba(0,0,0,0.1)]'>
@@ -85,9 +93,10 @@ export default function Form({ onBackDashBoard }: FormProps) {
                   <Controller
                     control={control}
                     name='genre'
+                    defaultValue=''
                     render={({ field: { onChange } }) => (
                       <Radio
-                        error={errors.name?.message}
+                        error={errors.genre?.message}
                         onChange={onChange}
                         options={[
                           { value: "M", label: "Masculino" },
@@ -113,6 +122,7 @@ export default function Form({ onBackDashBoard }: FormProps) {
                 <Controller
                   control={control}
                   name='empPosition'
+                  defaultValue=''
                   render={({ field: { onChange, value } }) => (
                     <Select
                       error={errors.empPosition?.message}
@@ -136,23 +146,34 @@ export default function Form({ onBackDashBoard }: FormProps) {
                 control={control}
                 name='usesEPI'
                 defaultValue={true}
-                render={({ field: { onChange } }) => (
+                render={({ field: { onChange, value } }) => (
                   <Checkbox
-                    onChanges={onChange}
+                    value={value as unknown as string}
+                    onChanges={(newValue) => {
+                      onChange(newValue);
+                      setNotUsesEPIchecked(!newValue as boolean);
+                    }}
                     placeholder='O trabalhador não usa EPI.'
                   />
                 )}
               />
             </div>
 
-            <div className='w-full border border-blue-theme min-h-[159px] rounded-[10px] px-3 py-2'>
+            <div
+              className={cn(
+                "w-full border border-blue-theme min-h-[159px] rounded-[10px] px-3 py-2",
+                notUsesEPIchecked && "bg-neutral-300"
+              )}
+            >
               <div>
                 <span>Selecione a atividade</span>
                 <Controller
                   control={control}
                   name='activity'
+                  defaultValue=''
                   render={({ field: { onChange, value } }) => (
                     <Select
+                      disabled={notUsesEPIchecked}
                       error={errors.activity?.message}
                       onChange={onChange}
                       value={value}
@@ -169,8 +190,10 @@ export default function Form({ onBackDashBoard }: FormProps) {
                   <Controller
                     control={control}
                     name='EPI'
+                    defaultValue=''
                     render={({ field: { onChange, value } }) => (
                       <Select
+                        disabled={notUsesEPIchecked}
                         error={errors.EPI?.message}
                         onChange={onChange}
                         value={value}
@@ -185,6 +208,8 @@ export default function Form({ onBackDashBoard }: FormProps) {
                 <div className='w-full max-w-[266px]'>
                   <span className='mb-2'>Informe o número do CA:</span>
                   <Input
+                    type='number'
+                    disabled={notUsesEPIchecked}
                     placeholder='9352'
                     {...register("numberCA")}
                     error={errors.numberCA?.message}
@@ -200,7 +225,14 @@ export default function Form({ onBackDashBoard }: FormProps) {
               </div>
             </div>
 
-            <Button className='mt-[10px]' type='button'>
+            <Button
+              className={cn(
+                notUsesEPIchecked &&
+                  "bg-neutral-300 cursor-not-allowed hover:bg-neutral-300"
+              )}
+              type='button'
+              disabled={notUsesEPIchecked}
+            >
               Adicionar outra atividade
             </Button>
           </div>

@@ -8,7 +8,7 @@ interface InputProps extends ComponentProps<"input"> {
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ error, label, className, ...props }, ref) => {
+  ({ error, label, className, type, disabled, ...props }, ref) => {
     return (
       <label
         htmlFor='id'
@@ -17,13 +17,15 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {label}
         <input
           ref={ref}
+          disabled={disabled}
           {...props}
-          type='text'
+          type={type || "text"}
           id='id'
           className={cn(
             "outline-none border border-blue-theme w-full rounded-[10px] h-[36px] px-2",
             className,
-            error && "!border-red-900"
+            error && "!border-red-900",
+            disabled && "bg-neutral-300 cursor-not-allowed"
           )}
         />
 

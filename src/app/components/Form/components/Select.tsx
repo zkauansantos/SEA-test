@@ -6,6 +6,7 @@ import cn from "../../../../utils/cn";
 import ErrorFeedback from "../../ErrorFeedback";
 
 interface SelectProps {
+  disabled?: boolean;
   className?: string;
   value?: string;
   error?: string;
@@ -22,6 +23,7 @@ export default function Select({
   value,
   error,
   onChange,
+  disabled,
 }: SelectProps) {
   const [, setSelectedValue] = useState(value);
 
@@ -35,10 +37,12 @@ export default function Select({
       <div className='relative'>
         <RdxSelect.Root onValueChange={handleSelect} value={value}>
           <RdxSelect.Trigger
+            disabled={disabled}
             className={cn(
               "w-full rounded-[10px] border border-blue-theme px-3 h-[36px] outline-none text-left",
               className,
-              error && "!border-red-900"
+              error && "!border-red-900",
+              disabled && "cursor-not-allowed"
             )}
           >
             <RdxSelect.Value />
