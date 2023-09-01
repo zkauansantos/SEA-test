@@ -1,9 +1,10 @@
 import { Plus } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Switch from "react-switch";
 import Button from "../Button";
 import EmployeeCard from "../EmployeeCard";
 import useEmployeesListController from "./useEmployeesListController";
+import cn from "../../../utils/cn";
 
 interface EmployeesListProps {
   onShowForm: () => void;
@@ -11,7 +12,21 @@ interface EmployeesListProps {
 
 export default function EmployeesList({ onShowForm }: EmployeesListProps) {
   const [isConclused, setIsConclused] = useState(false);
+  const [showOnlyActiveUsers, setShowOnlyActiveUsers] = useState(false);
   const { users } = useEmployeesListController();
+  const activeUsers = users.filter((user) => user.isActive).length;
+  const usersToShow = useMemo(() => {
+    if (showOnlyActiveUsers) {
+      return users.filter((user) => user.isActive);
+    }
+
+    return users;
+  }, [showOnlyActiveUsers, users]);
+
+  function clearFilters() {
+    setShowOnlyActiveUsers(false);
+  }
+
   return (
     <div className='w-full h-full max-h-[487px] flex flex-col gap-[35px] rounded-[20px] overflow-hidden bg-white shadow-[0px_11px_20px_0px_rgba(0,0,0,0.1)]'>
       <header className=' bg-blue-theme w-full pl-5 py-2'>
@@ -28,18 +43,27 @@ export default function EmployeesList({ onShowForm }: EmployeesListProps) {
         </Button>
 
         <div className='w-full flex items-start justify-start gap-4 mt-5 text-blue-theme text-sm relative'>
-          <Button className='mt-0 w-auto h-[32px] px-10'>
+          <Button
+            className={cn(
+              "mt-0 w-auto h-[32px] px-10",
+              showOnlyActiveUsers &&
+                "bg-blue-theme text-white hover:bg-blue-theme/40"
+            )}
+            onClick={() => setShowOnlyActiveUsers((prev) => !prev)}
+          >
             Ver apenas ativos
           </Button>
-          <Button className='mt-0 w-auto h-[32px] px-10'>Limpar Filtros</Button>
+          <Button className='mt-0 w-auto h-[32px] px-10' onClick={clearFilters}>
+            Limpar Filtros
+          </Button>
 
           <span className='text-gray-theme200 absolute right-2 top-2.5'>
-            Ativos 2/25
+            Ativos {activeUsers}/{users.length}
           </span>
         </div>
 
         <div className='overflow-y-auto space-y-2 h-[180px] w-full mt-5 gap-2'>
-          {users.map((user) => (
+          {usersToShow.map((user) => (
             <EmployeeCard key={user.id} user={user} />
           ))}
         </div>

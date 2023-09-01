@@ -23,6 +23,18 @@
       "EPIS": [],
       "isActive": true,
       "id": 2
+    },
+    {
+      "name": "Marinho Torres Lopes",
+      "cpf": "000.000.000-88",
+      "rg": "0000000",
+      "genre": "F",
+      "dateOfBirth": "21/04/1987",
+      "empPosition": "Cargo 2",
+      "usesEPI": true,
+      "EPIS": [],
+      "isActive": false,
+      "id": 3
     }
   ]
 }
