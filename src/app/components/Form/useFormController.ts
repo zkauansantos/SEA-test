@@ -7,6 +7,9 @@ import { usersService } from "../../services/users";
 import { useSelector } from "../../hooks/useSelector";
 import { useDispatch } from "react-redux";
 import { hideForm, setCompletedStage } from "../../redux/dashboard/actions";
+import usePositions from "../../hooks/usePositions";
+import useActivities from "../../hooks/useActivities";
+import useEpis from "../../hooks/useEpis";
 
 export default function useFormController() {
   const [notUsesEPIchecked, setNotUsesEPIchecked] = useState(false);
@@ -15,6 +18,10 @@ export default function useFormController() {
   >("");
   const formIsVisible = useSelector((state) => state.dashboard.formVisible);
   const dispatch = useDispatch();
+
+  const { epis } = useEpis();
+  const { positions } = usePositions();
+  const { activities } = useActivities();
 
   const {
     control,
@@ -99,6 +106,9 @@ export default function useFormController() {
     namePhotoSelected,
     control,
     errors,
+    epis,
+    activities,
+    positions,
     formIsVisible,
     fields,
     dispatch,

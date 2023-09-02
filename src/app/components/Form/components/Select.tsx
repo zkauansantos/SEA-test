@@ -4,17 +4,17 @@ import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
 import cn from "../../../../utils/cn";
 import ErrorFeedback from "../../ErrorFeedback";
+import { Activity } from "../../../entities/Activity";
+import { EPI } from "../../../entities/EPI";
+import { Position } from "../../../entities/Position";
 
 interface SelectProps {
   disabled?: boolean;
   className?: string;
   value?: string;
   error?: string;
-  onChange?: (value: string) => void;
-  options: {
-    value: string;
-    label: string;
-  }[];
+  onChange: (value: string) => void;
+  options: Activity[] | EPI[] | Position[];
 }
 
 export default function Select({
@@ -29,7 +29,7 @@ export default function Select({
 
   function handleSelect(value: string) {
     setSelectedValue(value);
-    onChange?.(value);
+    onChange(value);
   }
 
   return (
@@ -62,10 +62,10 @@ export default function Select({
                 {options.map((opt) => (
                   <RdxSelect.Item
                     key={Math.random()}
-                    value={opt.value}
+                    value={opt.name}
                     className='data-[state=checked]:font-bold data-[highlighted]:bg-gray-50 rounded-lg outline-none p-2 text-sm'
                   >
-                    <RdxSelect.ItemText>{opt.label}</RdxSelect.ItemText>
+                    <RdxSelect.ItemText>{opt.name}</RdxSelect.ItemText>
                   </RdxSelect.Item>
                 ))}
               </RdxSelect.Viewport>
