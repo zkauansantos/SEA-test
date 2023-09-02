@@ -1,11 +1,19 @@
 import { z } from "zod";
+import cpfValidator from "../../../utils/cpfValidator";
+import { rgValidator } from "../../../utils/rgValidator";
 
 export const zodFormSchema = z
   .object({
     isActive: z.boolean().optional(),
     name: z.string().nonempty({ message: "O nome é obrigatório" }),
-    cpf: z.string().nonempty({ message: "O CPF é obrigatório" }),
-    rg: z.string().nonempty({ message: "O RG é obrigatório" }),
+    cpf: z
+      .string()
+      .nonempty({ message: "O CPF é obrigatório" })
+      .refine((value) => cpfValidator(value), "CPF inválido"),
+    rg: z
+      .string()
+      .nonempty({ message: "O RG é obrigatório" })
+      .refine((value) => rgValidator(value), "RG inválido"),
     genre: z.string().nonempty({ message: "O gênero é obrigatório" }),
     dateOfBirth: z.date(),
     empPosition: z.string().nonempty({ message: "O cargo é obrigatório" }),
