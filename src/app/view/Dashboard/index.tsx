@@ -1,14 +1,17 @@
 import { useDispatch } from "react-redux";
+
+import { useSelector } from "../../hooks/useSelector";
+import { setCurrentStage } from "../../redux/dashboard/actions";
+
 import Button from "../../components/Button";
 import CommentBlock from "../../components/CommentBlock";
 import EmployeesList from "../../components/EmployeesList";
 import Form from "../../components/Form";
 import MultiStep from "../../components/MultiStep";
 import Sidebar from "../../components/Sidebar";
-import { useSelector } from "../../hooks/useSelector";
-import { setCurrentStage } from "../../redux/dashboard/actions";
-import cn from "../../utils/cn";
 import ComingSoon from "../../components/ComingSoon";
+
+import cn from "../../utils/cn";
 
 export default function Dashboard() {
   const { formVisible, completedStage, currentStage } = useSelector(
@@ -24,7 +27,7 @@ export default function Dashboard() {
         <MultiStep />
       </div>
 
-      <div className='mt-8 flex-1 flex-col xl:flex-row w-full flex items-start gap-[34px]'>
+      <div className='mt-8 flex-1 min-h-[487px] flex-col xl:flex-row w-full space-y-[92px] xl:space-y-0 xl:flex items-start gap-[92px] xl:gap-[34px]'>
         <CommentBlock />
         <EmployeesList />
         <Form />
@@ -32,7 +35,7 @@ export default function Dashboard() {
       </div>
 
       {!formVisible && currentStage === 1 && (
-        <div className='w-full flex justify-end pb-2 mt-1'>
+        <div className='w-full flex justify-end pb-2 mt-1 h-full xl:h-auto'>
           <Button
             disabled={!completedStage}
             onClick={() => dispatch(setCurrentStage(2))}

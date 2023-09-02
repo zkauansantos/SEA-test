@@ -1,4 +1,3 @@
-import Switch from "react-switch";
 import { Controller } from "react-hook-form";
 import { ArrowLeft } from "lucide-react";
 
@@ -6,9 +5,11 @@ import Button from "../Button";
 import Input from "./components/Input";
 import Select from "./components/Select";
 import Checkbox from "./components/Checkbox";
-import Radio from "./components/Radio";
-import useFormController from "./useFormController";
 import DatePickerInput from "./components/DatePickerInput";
+import Radio from "./components/Radio";
+import Switch from "../Switch";
+
+import useFormController from "./useFormController";
 import cn from "../../utils/cn";
 import { hideForm } from "../../redux/dashboard/actions";
 
@@ -29,7 +30,6 @@ export default function Form() {
     register,
     setNotUsesEPIchecked,
   } = useFormController();
-
 
   if (!formIsVisible) {
     return null;
@@ -65,12 +65,6 @@ export default function Form() {
                       inativo
                     </span>
                   }
-                  height={20}
-                  handleDiameter={16}
-                  offHandleColor='#4FA1C1'
-                  onHandleColor='#4FA1C1'
-                  offColor='#DBDBDB'
-                  onColor='#DBDBDB'
                 />
               )}
             />
@@ -254,7 +248,7 @@ export default function Form() {
             </Button>
           </div>
 
-          <div className='mt-6 w-full border border-blue-theme h-[138px] rounded-[10px] px-3 py-2'>
+          <div className='mt-6 w-full border border-blue-theme min-h-[138px] rounded-[10px] px-3 py-2'>
             <span className='font-medium text-gray-theme300'>
               Adicione Atestado de Saúde Ocupacional (opicional):
             </span>

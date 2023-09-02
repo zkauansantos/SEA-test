@@ -1,10 +1,13 @@
 import { Plus } from "lucide-react";
-import Switch from "react-switch";
-import Button from "../Button";
-import EmployeeCard from "../EmployeeCard";
-import useEmployeesListController from "./useEmployeesListController";
-import cn from "../../utils/cn";
+
 import { showForm } from "../../redux/dashboard/actions";
+import useEmployeesListController from "./useEmployeesListController";
+
+import EmployeeCard from "../EmployeeCard";
+import Switch from "../Switch";
+import Button from "../Button";
+
+import cn from "../../utils/cn";
 
 export default function EmployeesList() {
   const {
@@ -39,22 +42,27 @@ export default function EmployeesList() {
           <span>Adicionar funcionário</span>
         </Button>
 
-        <div className='w-full flex items-start justify-start gap-4 mt-5 text-blue-theme text-sm relative'>
-          <Button
-            className={cn(
-              "mt-0 w-auto h-[32px] px-10",
-              showOnlyActiveUsers &&
-                "bg-blue-theme text-white hover:bg-blue-theme/40"
-            )}
-            onClick={() => setShowOnlyActiveUsers((prev) => !prev)}
-          >
-            Ver apenas ativos
-          </Button>
-          <Button className='mt-0 w-auto h-[32px] px-10' onClick={clearFilters}>
-            Limpar Filtros
-          </Button>
+        <div className='w-full flex items-end justify-between mt-5 text-blue-theme text-sm relative'>
+          <div className='flex items-center gap-4'>
+            <Button
+              className={cn(
+                "mt-0 w-auto h-[32px] px-10",
+                showOnlyActiveUsers &&
+                  "bg-blue-theme text-white hover:bg-blue-theme/40"
+              )}
+              onClick={() => setShowOnlyActiveUsers((prev) => !prev)}
+            >
+              Ver apenas ativos
+            </Button>
+            <Button
+              className='mt-0 w-auto h-[32px] px-10'
+              onClick={clearFilters}
+            >
+              Limpar Filtros
+            </Button>
+          </div>
 
-          <span className='text-gray-theme200 absolute right-2 top-2.5'>
+          <span className='text-gray-theme200'>
             Ativos {activeUsers}/{users.length}
           </span>
         </div>
@@ -72,12 +80,6 @@ export default function EmployeesList() {
             checked={conclusedStage}
             checkedIcon={<span className='pl-2'>Sim</span>}
             uncheckedIcon={<span className='pr-2'>Não</span>}
-            height={20}
-            handleDiameter={16}
-            offHandleColor='#4FA1C1'
-            onHandleColor='#4FA1C1'
-            offColor='#DBDBDB'
-            onColor='#DBDBDB'
           />
         </div>
       </div>
