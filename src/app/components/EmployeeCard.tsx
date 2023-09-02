@@ -32,7 +32,10 @@ export default function EmployeeCard({ user }: EmployeeCardProps) {
         </div>
       </div>
 
-      <Button className='mt-0 rounded-none max-w-[50px] bg-blue-theme text-white text-lg font-bold absolute right-0 top-0 h-full flex items-center justify-center hover:bg-blue-theme/80'>
+      <Button
+        disabled
+        className='mt-0 rounded-none max-w-[50px] bg-blue-theme text-white text-lg font-bold absolute right-0 top-0 h-full flex items-center justify-center cursor-not-allowed hover:bg-blue-theme/80'
+      >
         ...
       </Button>
     </div>

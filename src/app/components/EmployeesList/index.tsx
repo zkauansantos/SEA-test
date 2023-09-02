@@ -5,16 +5,18 @@ import Button from "../Button";
 import EmployeeCard from "../EmployeeCard";
 import useEmployeesListController from "./useEmployeesListController";
 import cn from "../../../utils/cn";
+import { useSelector } from "../../hooks/useSelector";
+import { useDispatch } from "react-redux";
+import { showForm } from "../../redux/dashboard/actions";
 
-interface EmployeesListProps {
-  onShowForm: () => void;
-}
-
-export default function EmployeesList({ onShowForm }: EmployeesListProps) {
-  const [isConclused, setIsConclused] = useState(false);
+export default function EmployeesList() {
   const [showOnlyActiveUsers, setShowOnlyActiveUsers] = useState(false);
   const { users } = useEmployeesListController();
   const activeUsers = users.filter((user) => user.isActive).length;
+  const conclusedStage = useSelector((state) => state.dashboard.completedStage);
+  const formIsVisible = useSelector((state) => state.dashboard.formVisible);
+  const dispatch = useDispatch();
+
   const usersToShow = useMemo(() => {
     if (showOnlyActiveUsers) {
       return users.filter((user) => user.isActive);
@@ -27,6 +29,10 @@ export default function EmployeesList({ onShowForm }: EmployeesListProps) {
     setShowOnlyActiveUsers(false);
   }
 
+  if (formIsVisible) {
+    return null;
+  }
+
   return (
     <div className='w-full h-full max-h-[487px] flex flex-col gap-[35px] rounded-[20px] overflow-hidden bg-white shadow-[0px_11px_20px_0px_rgba(0,0,0,0.1)]'>
       <header className=' bg-blue-theme w-full pl-5 py-2'>
@@ -35,7 +41,7 @@ export default function EmployeesList({ onShowForm }: EmployeesListProps) {
 
       <div className='px-4'>
         <Button
-          onClick={onShowForm}
+          onClick={() => dispatch(showForm())}
           className='mt-0 h-[60px] flex items-center justify-center gap-2 text-blue-theme'
         >
           <Plus />
@@ -71,8 +77,8 @@ export default function EmployeesList({ onShowForm }: EmployeesListProps) {
         <div className='w-full flex items-end justify-end gap-2 mt-8 pr-2 text-sm text-gray-theme300'>
           <span>A etapa está concluida ?</span>
           <Switch
-            onChange={() => setIsConclused((prev) => !prev)}
-            checked={isConclused}
+            onChange={() => {}}
+            checked={conclusedStage}
             checkedIcon={<span className='pl-2'>Sim</span>}
             uncheckedIcon={<span className='pr-2'>Não</span>}
             height={20}

@@ -4,10 +4,15 @@ import { useEffect, useState } from "react";
 import { FormData, zodFormSchema } from "./schema/zodFormSchema";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { usersService } from "../../services/users";
+import { useSelector } from "../../hooks/useSelector";
+import { useDispatch } from "react-redux";
+import { hideForm, setCompletedStage } from "../../redux/dashboard/actions";
 
 export default function useFormController() {
   const [notUsesEPIchecked, setNotUsesEPIchecked] = useState(false);
   const [namePhotoSelected, setNamePhotoSelected] = useState("");
+  const formIsVisible = useSelector((state) => state.dashboard.formVisible);
+  const dispatch = useDispatch();
 
   const {
     control,
@@ -48,6 +53,8 @@ export default function useFormController() {
     setNamePhotoSelected("");
   }
 
+  console.log(errors);
+
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     const {
       cpf,
@@ -57,11 +64,10 @@ export default function useFormController() {
       name,
       rg,
       EPIS,
+      medicalCertificateFile,
       isActive,
       usesEPI,
     } = data;
-
-    console.log({ EPIS });
 
     try {
       await mutateAsync({
@@ -72,9 +78,13 @@ export default function useFormController() {
         empPosition,
         genre,
         isActive,
+        medicalCertificateFile: medicalCertificateFile?.name || null,
         rg,
         usesEPI,
       });
+
+      dispatch(setCompletedStage(true));
+      dispatch(hideForm());
 
       queryClient.invalidateQueries(["users"]);
       reset();
@@ -88,7 +98,9 @@ export default function useFormController() {
     namePhotoSelected,
     control,
     errors,
+    formIsVisible,
     fields,
+    dispatch,
     setNotUsesEPIchecked,
     onSelectPhoto,
     handleSubmit,

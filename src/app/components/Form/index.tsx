@@ -10,16 +10,15 @@ import Radio from "./components/Radio";
 import useFormController from "./useFormController";
 import DatePickerInput from "./components/DatePickerInput";
 import cn from "../../../utils/cn";
+import { hideForm } from "../../redux/dashboard/actions";
 
-interface FormProps {
-  onBackDashBoard: () => void;
-}
-
-export default function Form({ onBackDashBoard }: FormProps) {
+export default function Form() {
   const {
     errors,
     fields,
     append,
+    dispatch,
+    formIsVisible,
     control,
     notUsesEPIchecked,
     namePhotoSelected,
@@ -29,10 +28,14 @@ export default function Form({ onBackDashBoard }: FormProps) {
     setNotUsesEPIchecked,
   } = useFormController();
 
+  if (!formIsVisible) {
+    return null;
+  }
+
   return (
     <div className='flex-1 rounded-[20px] overflow-hidden bg-white shadow-[0px_11px_20px_0px_rgba(0,0,0,0.1)]'>
       <header className=' bg-blue-theme w-full pl-5 py-2 text-white text-[28px] flex items-center gap-2'>
-        <button onClick={onBackDashBoard}>
+        <button onClick={() => dispatch(hideForm())}>
           <ArrowLeft />
         </button>
         <h2>Adicionar funcionário</h2>
@@ -270,6 +273,7 @@ export default function Form({ onBackDashBoard }: FormProps) {
                   className='hidden'
                   type='file'
                   accept='image/*'
+                  {...register("medicalCertificateFile")}
                   onChange={(e) => onSelectPhoto(e.target.files?.[0])}
                 />
               </label>
