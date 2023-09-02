@@ -10,10 +10,7 @@ export const zodFormSchema = z
     dateOfBirth: z.date(),
     empPosition: z.string().nonempty({ message: "O cargo é obrigatório" }),
     usesEPI: z.boolean().optional(),
-    medicalCertificateFile: z
-      .instanceof(FileList)
-      .transform((list) => list[0])
-      .optional(),
+    medicalCertificateFile: z.instanceof(FileList).optional(),
     EPIS: z
       .array(
         z.object({

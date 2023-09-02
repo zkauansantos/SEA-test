@@ -10,7 +10,9 @@ import { hideForm, setCompletedStage } from "../../redux/dashboard/actions";
 
 export default function useFormController() {
   const [notUsesEPIchecked, setNotUsesEPIchecked] = useState(false);
-  const [namePhotoSelected, setNamePhotoSelected] = useState("");
+  const [namePhotoSelected, setNamePhotoSelected] = useState<
+    string | undefined
+  >("");
   const formIsVisible = useSelector((state) => state.dashboard.formVisible);
   const dispatch = useDispatch();
 
@@ -19,14 +21,18 @@ export default function useFormController() {
     formState: { errors },
     handleSubmit: hookFormHandleSubmit,
     register,
+    resetField,
     clearErrors,
     reset,
+    watch,
   } = useForm<FormData>({
     resolver: zodResolver(zodFormSchema),
     defaultValues: {
       EPIS: [{ activity: "", EPI: "", numberCA: "" }],
     },
   });
+
+  const medicalCertificateFileName = watch("medicalCertificateFile");
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -39,21 +45,16 @@ export default function useFormController() {
   useEffect(() => {
     if (notUsesEPIchecked) {
       clearErrors(["EPIS"]);
+
+      resetField("EPIS");
     }
-  }, [notUsesEPIchecked, clearErrors, reset]);
+  }, [notUsesEPIchecked, clearErrors, resetField]);
 
-  function onSelectPhoto(photo: File | undefined) {
-    if (photo) {
-      if (["image/jpeg", "image/png", "image/jpg"].includes(photo.type)) {
-        setNamePhotoSelected(photo.name);
-        return;
-      }
+  useEffect(() => {
+    if (medicalCertificateFileName && medicalCertificateFileName!.length > 0) {
+      setNamePhotoSelected(medicalCertificateFileName?.[0].name);
     }
-
-    setNamePhotoSelected("");
-  }
-
-  console.log(errors);
+  }, [medicalCertificateFileName]);
 
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     const {
@@ -73,19 +74,19 @@ export default function useFormController() {
       await mutateAsync({
         name,
         cpf,
-        EPIS,
+        EPIS: EPIS?.filter((epi) => epi.EPI && epi.activity && epi.numberCA),
         dateOfBirth,
         empPosition,
         genre,
         isActive,
-        medicalCertificateFile: medicalCertificateFile?.name || null,
+        medicalCertificateFile: medicalCertificateFile?.[0]?.name || null,
         rg,
         usesEPI,
       });
 
       dispatch(setCompletedStage(true));
       dispatch(hideForm());
-
+      setNotUsesEPIchecked(false);
       queryClient.invalidateQueries(["users"]);
       reset();
     } catch {
@@ -102,7 +103,6 @@ export default function useFormController() {
     fields,
     dispatch,
     setNotUsesEPIchecked,
-    onSelectPhoto,
     handleSubmit,
     register,
     append,

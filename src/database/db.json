@@ -38,6 +38,96 @@
       "isActive": false,
       "medicalCertificateFile": null,
       "id": 3
+    },
+    {
+      "name": "Kauan Santos de Pontes",
+      "cpf": "06964412174",
+      "rg": "3642742",
+      "genre": "M",
+      "dateOfBirth": "2000-06-01T03:00:00.000Z",
+      "empPosition": "1",
+      "usesEPI": false,
+      "EPIS": [],
+      "isActive": true,
+      "medicalCertificateFile": null,
+      "id": 4
+    },
+    {
+      "name": "Kauan Santos de Pontes",
+      "cpf": "06964412174",
+      "rg": "3642742",
+      "genre": "M",
+      "dateOfBirth": "2000-06-01T03:00:00.000Z",
+      "empPosition": "1",
+      "usesEPI": false,
+      "EPIS": [],
+      "isActive": true,
+      "medicalCertificateFile": "Captura de tela de 2023-08-30 17-04-51.png",
+      "id": 5
+    },
+    {
+      "name": "Kauan Santos de Pontes",
+      "cpf": "06964412174",
+      "rg": "3642742",
+      "genre": "M",
+      "dateOfBirth": "2000-06-01T03:00:00.000Z",
+      "empPosition": "1",
+      "usesEPI": false,
+      "EPIS": [],
+      "isActive": true,
+      "medicalCertificateFile": "Captura de tela de 2023-08-23 16-45-57.png",
+      "id": 6
+    },
+    {
+      "name": "Kauan Santos de Pontes",
+      "cpf": "06964412174",
+      "rg": "3642742",
+      "genre": "M",
+      "dateOfBirth": "2000-06-01T03:00:00.000Z",
+      "empPosition": "1",
+      "usesEPI": false,
+      "EPIS": [
+        {
+          "activity": "",
+          "EPI": "",
+          "numberCA": ""
+        }
+      ],
+      "isActive": true,
+      "medicalCertificateFile": null,
+      "id": 7
+    },
+    {
+      "name": "teste",
+      "cpf": "06964412174",
+      "rg": "3642742",
+      "genre": "M",
+      "dateOfBirth": "2000-06-01T03:00:00.000Z",
+      "empPosition": "1",
+      "usesEPI": false,
+      "EPIS": [
+        {
+          "activity": "",
+          "EPI": "",
+          "numberCA": ""
+        }
+      ],
+      "isActive": true,
+      "medicalCertificateFile": null,
+      "id": 8
+    },
+    {
+      "name": "teste",
+      "cpf": "06964412174",
+      "rg": "3642742",
+      "genre": "M",
+      "dateOfBirth": "2000-06-01T03:00:00.000Z",
+      "empPosition": "1",
+      "usesEPI": false,
+      "EPIS": [],
+      "isActive": true,
+      "medicalCertificateFile": null,
+      "id": 9
     }
   ]
 }

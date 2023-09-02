@@ -22,7 +22,6 @@ export default function Form() {
     control,
     notUsesEPIchecked,
     namePhotoSelected,
-    onSelectPhoto,
     handleSubmit,
     register,
     setNotUsesEPIchecked,
@@ -258,7 +257,11 @@ export default function Form() {
             </span>
 
             <div className='flex flex-col gap-3 mt-3'>
-              <Input placeholder={namePhotoSelected} className='h-[36px]' />
+              <Input
+                placeholder={namePhotoSelected}
+                disabled
+                className='h-[36px] disabled:bg-transparent disabled:cursor-default'
+              />
 
               <label
                 className={cn(
@@ -274,7 +277,6 @@ export default function Form() {
                   type='file'
                   accept='image/*'
                   {...register("medicalCertificateFile")}
-                  onChange={(e) => onSelectPhoto(e.target.files?.[0])}
                 />
               </label>
             </div>
