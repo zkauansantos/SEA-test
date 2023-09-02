@@ -1,35 +1,26 @@
 import { Plus } from "lucide-react";
-import { useMemo, useState } from "react";
 import Switch from "react-switch";
 import Button from "../Button";
 import EmployeeCard from "../EmployeeCard";
 import useEmployeesListController from "./useEmployeesListController";
 import cn from "../../../utils/cn";
-import { useSelector } from "../../hooks/useSelector";
-import { useDispatch } from "react-redux";
 import { showForm } from "../../redux/dashboard/actions";
 
 export default function EmployeesList() {
-  const [showOnlyActiveUsers, setShowOnlyActiveUsers] = useState(false);
-  const { users } = useEmployeesListController();
-  const activeUsers = users.filter((user) => user.isActive).length;
-  const conclusedStage = useSelector((state) => state.dashboard.completedStage);
-  const formIsVisible = useSelector((state) => state.dashboard.formVisible);
-  const dispatch = useDispatch();
+  const {
+    showOnlyActiveUsers,
+    activeUsers,
+    conclusedStage,
+    formIsVisible,
+    currentStage,
+    users,
+    setShowOnlyActiveUsers,
+    dispatch,
+    clearFilters,
+    usersToShow,
+  } = useEmployeesListController();
 
-  const usersToShow = useMemo(() => {
-    if (showOnlyActiveUsers) {
-      return users.filter((user) => user.isActive);
-    }
-
-    return users;
-  }, [showOnlyActiveUsers, users]);
-
-  function clearFilters() {
-    setShowOnlyActiveUsers(false);
-  }
-
-  if (formIsVisible) {
+  if (formIsVisible || currentStage !== 1) {
     return null;
   }
 

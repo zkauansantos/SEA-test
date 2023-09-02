@@ -20,3 +20,16 @@ export function setCompletedStage(value: boolean) {
     payload: value,
   };
 }
+
+export function setCurrentStage(value: number) {
+  return {
+    type: types.SET_CURRENT_STAGE,
+    payload: value,
+  };
+}
+
+export function reset() {
+  return {
+    type: types.RESET,
+  };
+}

@@ -16,16 +16,20 @@ export default function Form() {
   const {
     errors,
     fields,
-    append,
-    dispatch,
     formIsVisible,
     control,
+    positions,
+    activities,
+    epis,
     notUsesEPIchecked,
     namePhotoSelected,
+    append,
+    dispatch,
     handleSubmit,
     register,
     setNotUsesEPIchecked,
   } = useFormController();
+
 
   if (!formIsVisible) {
     return null;
@@ -134,7 +138,7 @@ export default function Form() {
                       error={errors.empPosition?.message}
                       onChange={onChange}
                       value={value}
-                      options={[{ value: "1", label: "Eletricista" }]}
+                      options={positions}
                     />
                   )}
                 />
@@ -184,7 +188,7 @@ export default function Form() {
                         error={errors.EPIS?.[index]?.activity?.message}
                         onChange={onChange}
                         value={value}
-                        options={[{ value: "2", label: "Carpinteiro" }]}
+                        options={activities}
                       />
                     )}
                   />
@@ -203,9 +207,7 @@ export default function Form() {
                           error={errors.EPIS?.[index]?.EPI?.message}
                           onChange={onChange}
                           value={value}
-                          options={[
-                            { value: "3", label: "Calçado de Segurança" },
-                          ]}
+                          options={epis}
                         />
                       )}
                     />
@@ -223,8 +225,9 @@ export default function Form() {
                   </div>
 
                   <Button
-                    className='mt-6 flex-1 border-none bg-transparent'
+                    className='mt-6 flex-1 border-none bg-transparent cursor-not-allowed'
                     type='button'
+                    disabled
                   >
                     Adicionar EPI
                   </Button>

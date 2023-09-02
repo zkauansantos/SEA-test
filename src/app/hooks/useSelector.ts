@@ -7,6 +7,7 @@ type RootState = {
   dashboard: {
     completedStage: boolean;
     formVisible: boolean;
+    currentStage: number;
   };
 };
 
