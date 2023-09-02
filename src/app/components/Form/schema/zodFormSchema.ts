@@ -10,6 +10,10 @@ export const zodFormSchema = z
     dateOfBirth: z.date(),
     empPosition: z.string().nonempty({ message: "O cargo é obrigatório" }),
     usesEPI: z.boolean().optional(),
+    medicalCertificateFile: z
+      .instanceof(FileList)
+      .transform((list) => list[0])
+      .optional(),
     EPIS: z
       .array(
         z.object({
@@ -18,14 +22,6 @@ export const zodFormSchema = z
           numberCA: z.string().optional(),
         })
       )
-      .transform((value) => {
-        console.log(
-          value?.filter((item) => item.EPI && item.activity && item.numberCA)
-        );
-        return value?.filter(
-          (item) => item.EPI && item.activity && item.numberCA
-        );
-      })
       .optional(),
   })
   .superRefine(({ usesEPI, EPIS }, ctx) => {

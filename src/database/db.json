@@ -10,6 +10,7 @@
       "usesEPI": true,
       "EPIS": [],
       "isActive": true,
+      "medicalCertificateFile": null,
       "id": 1
     },
     {
@@ -22,6 +23,7 @@
       "usesEPI": true,
       "EPIS": [],
       "isActive": true,
+      "medicalCertificateFile": null,
       "id": 2
     },
     {
@@ -34,6 +36,7 @@
       "usesEPI": true,
       "EPIS": [],
       "isActive": false,
+      "medicalCertificateFile": null,
       "id": 3
     }
   ]

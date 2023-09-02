@@ -14,6 +14,7 @@ export interface CreateUserParams {
     activity?: string;
     numberCA?: string;
   }>;
+  medicalCertificateFile?: string | null;
   numberCA?: string;
   isActive?: boolean;
 }
@@ -31,6 +32,7 @@ export async function create(body: CreateUserParams) {
       usesEPI: body.usesEPI,
       EPIS: body.EPIS,
       isActive: body.isActive,
+      medicalCertificateFile: body.medicalCertificateFile,
     },
     {
       headers: {

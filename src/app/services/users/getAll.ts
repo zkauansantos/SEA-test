@@ -14,6 +14,7 @@ export interface GetAllResponse {
     activity: string;
     numberCA: string;
   }>;
+  medicalCertificateFile?: string | null;
   isActive: boolean;
 }
 
