@@ -1,5 +1,5 @@
-import { images } from "../../constants/imagesNavList";
-import cn from "../../utils/cn";
+import { images } from "../constants/imagesNavList";
+import cn from "../utils/cn";
 
 export default function Sidebar() {
   return (

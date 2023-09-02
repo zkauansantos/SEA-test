@@ -3,7 +3,7 @@ import Switch from "react-switch";
 import Button from "../Button";
 import EmployeeCard from "../EmployeeCard";
 import useEmployeesListController from "./useEmployeesListController";
-import cn from "../../../utils/cn";
+import cn from "../../utils/cn";
 import { showForm } from "../../redux/dashboard/actions";
 
 export default function EmployeesList() {

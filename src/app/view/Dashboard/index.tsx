@@ -7,7 +7,7 @@ import MultiStep from "../../components/MultiStep";
 import Sidebar from "../../components/Sidebar";
 import { useSelector } from "../../hooks/useSelector";
 import { setCurrentStage } from "../../redux/dashboard/actions";
-import cn from "../../../utils/cn";
+import cn from "../../utils/cn";
 import ComingSoon from "../../components/ComingSoon";
 
 export default function Dashboard() {

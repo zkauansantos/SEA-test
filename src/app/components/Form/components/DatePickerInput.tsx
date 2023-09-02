@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
-import cn from "../../../../utils/cn";
-import formatDate from "../../../../utils/formatDate";
+import cn from "../../../utils/cn";
+import formatDate from "../../../utils/formatDate";
 import DatePicker from "../../DatePicker";
 import ErrorFeedback from "../../ErrorFeedback";
 

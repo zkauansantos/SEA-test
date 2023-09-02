@@ -1,5 +1,5 @@
 import { ComponentProps, forwardRef } from "react";
-import cn from "../../../../utils/cn";
+import cn from "../../../utils/cn";
 import ErrorFeedback from "../../ErrorFeedback";
 
 interface InputProps extends ComponentProps<"input"> {

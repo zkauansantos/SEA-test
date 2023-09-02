@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as RdxSelect from "@radix-ui/react-select";
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
-import cn from "../../../../utils/cn";
+import cn from "../../../utils/cn";
 import ErrorFeedback from "../../ErrorFeedback";
 import { Activity } from "../../../entities/Activity";
 import { EPI } from "../../../entities/EPI";

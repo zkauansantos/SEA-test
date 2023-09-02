@@ -1,8 +1,8 @@
-import { steps } from "../../constants/steps";
+import { steps } from "../constants/steps";
 import stepIcon from "../../assets/icons/step.svg";
 import line from "../../assets/images/linesteps.png";
 import { useSelector } from "../hooks/useSelector";
-import cn from "../../utils/cn";
+import cn from "../utils/cn";
 
 export default function MultiStep() {
   const conclusedStep = useSelector((state) => state.dashboard.completedStage);

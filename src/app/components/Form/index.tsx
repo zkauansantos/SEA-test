@@ -9,7 +9,7 @@ import Checkbox from "./components/Checkbox";
 import Radio from "./components/Radio";
 import useFormController from "./useFormController";
 import DatePickerInput from "./components/DatePickerInput";
-import cn from "../../../utils/cn";
+import cn from "../../utils/cn";
 import { hideForm } from "../../redux/dashboard/actions";
 
 export default function Form() {
