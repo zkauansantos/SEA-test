@@ -1,6 +1,4 @@
-import { api } from "../api";
-
-export interface GetAllResponse {
+export interface User {
   id: number;
   name: string;
   cpf: string;
@@ -16,10 +14,4 @@ export interface GetAllResponse {
   }>;
   medicalCertificateFile: string | null;
   isActive: boolean;
-}
-
-export async function getAll() {
-  const { data } = await api.get<GetAllResponse[]>("/users");
-
-  return data;
 }

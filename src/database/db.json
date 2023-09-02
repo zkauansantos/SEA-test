@@ -25,109 +25,132 @@
       "isActive": true,
       "medicalCertificateFile": null,
       "id": 2
+    }
+  ],
+  "positions": [
+    {
+      "name": "Engenheiro de Software",
+      "id": 1
     },
     {
-      "name": "Marinho Torres Lopes",
-      "cpf": "000.000.000-88",
-      "rg": "0000000",
-      "genre": "F",
-      "dateOfBirth": "21/04/1987",
-      "empPosition": "Cargo 2",
-      "usesEPI": true,
-      "EPIS": [],
-      "isActive": false,
-      "medicalCertificateFile": null,
+      "name": "Gerente de Marketing",
+      "id": 2
+    },
+    {
+      "name": "Analista de Dados",
       "id": 3
     },
     {
-      "name": "Kauan Santos de Pontes",
-      "cpf": "06964412174",
-      "rg": "3642742",
-      "genre": "M",
-      "dateOfBirth": "2000-06-01T03:00:00.000Z",
-      "empPosition": "1",
-      "usesEPI": false,
-      "EPIS": [],
-      "isActive": true,
-      "medicalCertificateFile": null,
+      "name": "Enfermeiro(a)",
       "id": 4
     },
     {
-      "name": "Kauan Santos de Pontes",
-      "cpf": "06964412174",
-      "rg": "3642742",
-      "genre": "M",
-      "dateOfBirth": "2000-06-01T03:00:00.000Z",
-      "empPosition": "1",
-      "usesEPI": false,
-      "EPIS": [],
-      "isActive": true,
-      "medicalCertificateFile": "Captura de tela de 2023-08-30 17-04-51.png",
+      "name": "Gerente de Recursos Humanos",
       "id": 5
     },
     {
-      "name": "Kauan Santos de Pontes",
-      "cpf": "06964412174",
-      "rg": "3642742",
-      "genre": "M",
-      "dateOfBirth": "2000-06-01T03:00:00.000Z",
-      "empPosition": "1",
-      "usesEPI": false,
-      "EPIS": [],
-      "isActive": true,
-      "medicalCertificateFile": "Captura de tela de 2023-08-23 16-45-57.png",
+      "name": "Designer Gráfico",
       "id": 6
     },
     {
-      "name": "Kauan Santos de Pontes",
-      "cpf": "06964412174",
-      "rg": "3642742",
-      "genre": "M",
-      "dateOfBirth": "2000-06-01T03:00:00.000Z",
-      "empPosition": "1",
-      "usesEPI": false,
-      "EPIS": [
-        {
-          "activity": "",
-          "EPI": "",
-          "numberCA": ""
-        }
-      ],
-      "isActive": true,
-      "medicalCertificateFile": null,
+      "name": "Consultor Financeiro",
       "id": 7
     },
     {
-      "name": "teste",
-      "cpf": "06964412174",
-      "rg": "3642742",
-      "genre": "M",
-      "dateOfBirth": "2000-06-01T03:00:00.000Z",
-      "empPosition": "1",
-      "usesEPI": false,
-      "EPIS": [
-        {
-          "activity": "",
-          "EPI": "",
-          "numberCA": ""
-        }
-      ],
-      "isActive": true,
-      "medicalCertificateFile": null,
+      "name": "Eletricista",
       "id": 8
     },
     {
-      "name": "teste",
-      "cpf": "06964412174",
-      "rg": "3642742",
-      "genre": "M",
-      "dateOfBirth": "2000-06-01T03:00:00.000Z",
-      "empPosition": "1",
-      "usesEPI": false,
-      "EPIS": [],
-      "isActive": true,
-      "medicalCertificateFile": null,
+      "name": "Professor(a)",
       "id": 9
+    },
+    {
+      "name": "Analista de Suporte Técnico",
+      "id": 10
+    }
+  ],
+  "activities": [
+    {
+      "name": "Desenvolvimento",
+      "id": 1
+    },
+    {
+      "name": "Análise de Mercado",
+      "id": 2
+    },
+    {
+      "name": "Análise de Dados",
+      "id": 3
+    },
+    {
+      "name": "Atendimento ao Paciente",
+      "id": 4
+    },
+    {
+      "name": "Recrutamento e Seleção",
+      "id": 5
+    },
+    {
+      "name": "Criação de Layouts",
+      "id": 6
+    },
+    {
+      "name": "Consultoria",
+      "id": 7
+    },
+    {
+      "name": "Manutenção",
+      "id": 8
+    },
+    {
+      "name": "Ensino",
+      "id": 9
+    },
+    {
+      "name": "Suporte",
+      "id": 10
+    }
+  ],
+  "epis": [
+    {
+      "name": "Capacete",
+      "id": 1
+    },
+    {
+      "name": "Óculos de Proteção",
+      "id": 2
+    },
+    {
+      "name": "Protetor Auricular",
+      "id": 3
+    },
+    {
+      "name": "Luvas",
+      "id": 4
+    },
+    {
+      "name": "Máscara",
+      "id": 5
+    },
+    {
+      "name": "Protetor Solar",
+      "id": 6
+    },
+    {
+      "name": "Cinto de Segurança",
+      "id": 7
+    },
+    {
+      "name": "Botas",
+      "id": 8
+    },
+    {
+      "name": "Mangas",
+      "id": 9
+    },
+    {
+      "name": "Protetor Facial",
+      "id": 10
     }
   ]
 }
