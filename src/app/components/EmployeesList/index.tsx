@@ -11,16 +11,16 @@ import cn from "../../utils/cn";
 
 export default function EmployeesList() {
   const {
-    showOnlyActiveUsers,
-    activeUsers,
+    showOnlyActiveEmployees,
+    activeEmployees,
     conclusedStage,
     formIsVisible,
     currentStage,
-    users,
-    setShowOnlyActiveUsers,
+    employees,
+    setShowOnlyActiveEmployees,
     dispatch,
     clearFilters,
-    usersToShow,
+    employeesToShow,
   } = useEmployeesListController();
 
   if (formIsVisible || currentStage !== 1) {
@@ -47,10 +47,10 @@ export default function EmployeesList() {
             <Button
               className={cn(
                 "mt-0 w-auto h-[32px] px-10",
-                showOnlyActiveUsers &&
+                showOnlyActiveEmployees &&
                   "bg-blue-theme text-white hover:bg-blue-theme/40"
               )}
-              onClick={() => setShowOnlyActiveUsers((prev) => !prev)}
+              onClick={() => setShowOnlyActiveEmployees((prev) => !prev)}
             >
               Ver apenas ativos
             </Button>
@@ -63,13 +63,13 @@ export default function EmployeesList() {
           </div>
 
           <span className='text-gray-theme200'>
-            Ativos {activeUsers}/{users.length}
+            Ativos {activeEmployees}/{employees.length}
           </span>
         </div>
 
         <div className='overflow-y-auto space-y-2 h-[180px] w-full mt-5 gap-2'>
-          {usersToShow.map((user) => (
-            <EmployeeCard key={user.id} user={user} />
+          {employeesToShow.map((employee) => (
+            <EmployeeCard key={employee.id} employee={employee} />
           ))}
         </div>
 

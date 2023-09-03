@@ -1,27 +1,25 @@
 import { api } from "../api";
 
-export interface CreateUserParams {
-  name?: string;
-  cpf?: string;
-  rg?: string;
-  genre?: string;
-  dateOfBirth?: string | Date;
-  empPosition?: string;
-  usesEPI?: boolean;
-  activity?: string;
-  EPIS?: Array<{
+export interface CreateEmployeeParams {
+  name: string;
+  cpf: string;
+  rg: string;
+  genre: string;
+  dateOfBirth: string | Date;
+  empPosition: string;
+  usesEPI: boolean;
+  EPIS: Array<{
     EPI?: string;
     activity?: string;
     numberCA?: string;
   }>;
-  medicalCertificateFile?: string | null;
-  numberCA?: string;
-  isActive?: boolean;
+  medicalCertificateFile: string | null;
+  isActive: boolean;
 }
 
-export async function create(body: CreateUserParams) {
+export async function create(body: CreateEmployeeParams) {
   const { data } = await api.post(
-    "/users",
+    "/employees",
     {
       name: body.name,
       cpf: body.cpf,

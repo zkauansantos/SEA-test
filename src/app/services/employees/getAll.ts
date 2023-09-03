@@ -19,7 +19,7 @@ export interface GetAllResponse {
 }
 
 export async function getAll() {
-  const { data } = await api.get<GetAllResponse[]>("/users");
+  const { data } = await api.get<GetAllResponse[]>("/employees");
 
   return data;
 }

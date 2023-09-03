@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { FormData, zodFormSchema } from "./schema/zodFormSchema";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { usersService } from "../../services/users";
+import { employeesService } from "../../services/employees";
 import { useSelector } from "../../hooks/useSelector";
 import { useDispatch } from "react-redux";
 import { hideForm, setCompletedStage } from "../../redux/dashboard/actions";
@@ -47,7 +47,7 @@ export default function useFormController() {
   });
 
   const queryClient = useQueryClient();
-  const { mutateAsync } = useMutation(usersService.create);
+  const { mutateAsync } = useMutation(employeesService.create);
 
   useEffect(() => {
     if (notUsesEPIchecked) {
@@ -81,20 +81,20 @@ export default function useFormController() {
       await mutateAsync({
         name,
         cpf,
-        EPIS: EPIS?.filter((epi) => epi.EPI && epi.activity && epi.numberCA),
+        EPIS: EPIS?.filter((epi) => epi.EPI && epi.activity && epi.numberCA) || [],
         dateOfBirth,
         empPosition,
         genre,
-        isActive,
+        isActive: Boolean(isActive),
         medicalCertificateFile: medicalCertificateFile?.[0]?.name || null,
         rg,
-        usesEPI,
+        usesEPI: Boolean(usesEPI),
       });
 
       dispatch(setCompletedStage(true));
       dispatch(hideForm());
       setNotUsesEPIchecked(false);
-      queryClient.invalidateQueries(["users"]);
+      queryClient.invalidateQueries(["employees"]);
       reset();
     } catch {
       reset();

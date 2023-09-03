@@ -1,39 +1,41 @@
 import { useDispatch } from "react-redux";
 import { useSelector } from "../../hooks/useSelector";
-import useUsers from "../../hooks/useUsers";
+import useEmployees from "../../hooks/useEmployees";
 import { useMemo, useState } from "react";
 
 export default function useEmployeesListController() {
-  const { users } = useUsers();
+  const { employees } = useEmployees();
   const currentStage = useSelector((state) => state.dashboard.currentStage);
-  const [showOnlyActiveUsers, setShowOnlyActiveUsers] = useState(false);
-  const activeUsers = users.filter((user) => user.isActive).length;
+  const [showOnlyActiveEmployees, setShowOnlyActiveEmployees] = useState(false);
+  const activeEmployees = employees.filter(
+    (employee) => employee.isActive
+  ).length;
   const conclusedStage = useSelector((state) => state.dashboard.completedStage);
   const formIsVisible = useSelector((state) => state.dashboard.formVisible);
   const dispatch = useDispatch();
 
-  const usersToShow = useMemo(() => {
-    if (showOnlyActiveUsers) {
-      return users.filter((user) => user.isActive);
+  const employeesToShow = useMemo(() => {
+    if (showOnlyActiveEmployees) {
+      return employees.filter((employee) => employee.isActive);
     }
 
-    return users;
-  }, [showOnlyActiveUsers, users]);
+    return employees;
+  }, [showOnlyActiveEmployees, employees]);
 
   function clearFilters() {
-    setShowOnlyActiveUsers(false);
+    setShowOnlyActiveEmployees(false);
   }
 
   return {
-    usersToShow,
-    showOnlyActiveUsers,
-    activeUsers,
+    employeesToShow,
+    showOnlyActiveEmployees,
+    activeEmployees,
     conclusedStage,
     formIsVisible,
     currentStage,
-    users,
+    employees,
     clearFilters,
-    setShowOnlyActiveUsers,
+    setShowOnlyActiveEmployees,
     dispatch,
   };
 }

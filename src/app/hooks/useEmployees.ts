@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import { usersService } from "../services/users";
+import { employeesService } from "../services/employees";
 
-export default function useUsers() {
+export default function useEmployees() {
   const { data, isFetching, isInitialLoading, refetch } = useQuery({
-    queryKey: ["users"],
-    queryFn: () => usersService.getAll(),
+    queryKey: ["employees"],
+    queryFn: () => employeesService.getAll(),
   });
 
   return {
-    users: data ?? [],
+    employees: data ?? [],
     isLoading: isFetching,
     isInitialLoading,
     refetch,
