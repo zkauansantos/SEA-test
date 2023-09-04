@@ -17,6 +17,7 @@ export default function EmployeesList() {
     formIsVisible,
     currentStage,
     employees,
+    isError,
     setShowOnlyActiveEmployees,
     dispatch,
     clearFilters,
@@ -67,11 +68,21 @@ export default function EmployeesList() {
           </span>
         </div>
 
-        <div className='overflow-y-auto space-y-2 h-[180px] w-full mt-5 gap-2'>
-          {employeesToShow.map((employee) => (
-            <EmployeeCard key={employee.id} employee={employee} />
-          ))}
-        </div>
+        {!isError && (
+          <div className='overflow-y-auto space-y-2 h-[180px] w-full mt-5 gap-2'>
+            {employeesToShow.map((employee) => (
+              <EmployeeCard key={employee.id} employee={employee} />
+            ))}
+          </div>
+        )}
+
+        {isError && (
+          <div className=' h-[180px] w-full mt-5'>
+            <span className='text-red-900'>
+              Ops ocorreu um erro ao carregar os funcionários, tente novamente depois!
+            </span>
+          </div>
+        )}
 
         <div className='w-full flex items-end justify-end gap-2 mt-8 pr-2 text-sm text-gray-theme300'>
           <span>A etapa está concluida ?</span>

@@ -4,7 +4,7 @@ import useEmployees from "../../hooks/useEmployees";
 import { useMemo, useState } from "react";
 
 export default function useEmployeesListController() {
-  const { employees } = useEmployees();
+  const { employees, isError } = useEmployees();
   const currentStage = useSelector((state) => state.dashboard.currentStage);
   const [showOnlyActiveEmployees, setShowOnlyActiveEmployees] = useState(false);
   const activeEmployees = employees.filter(
@@ -30,6 +30,7 @@ export default function useEmployeesListController() {
     employeesToShow,
     showOnlyActiveEmployees,
     activeEmployees,
+    isError,
     conclusedStage,
     formIsVisible,
     currentStage,

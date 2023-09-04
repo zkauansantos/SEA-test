@@ -10,6 +10,7 @@ import { hideForm, setCompletedStage } from "../../redux/dashboard/actions";
 import usePositions from "../../hooks/usePositions";
 import useActivities from "../../hooks/useActivities";
 import useEpis from "../../hooks/useEpis";
+import { toast } from "react-hot-toast";
 
 export default function useFormController() {
   const [notUsesEPIchecked, setNotUsesEPIchecked] = useState(false);
@@ -19,9 +20,11 @@ export default function useFormController() {
   const formIsVisible = useSelector((state) => state.dashboard.formVisible);
   const dispatch = useDispatch();
 
-  const { epis } = useEpis();
-  const { positions } = usePositions();
-  const { activities } = useActivities();
+  const { epis, isError: isErrorEpis } = useEpis();
+  const { positions, isError: isErrorPositions } = usePositions();
+  const { activities, isError: isErrorActivities } = useActivities();
+
+  const isError = isErrorEpis || isErrorPositions || isErrorActivities;
 
   const {
     control,
@@ -63,6 +66,12 @@ export default function useFormController() {
     }
   }, [medicalCertificateFileName]);
 
+  useEffect(() => {
+    if (isError) {
+      toast.error("Ops! Ocorreu um erro ao carregar os dados dos selects!");
+    }
+  }, [isError]);
+
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     const {
       cpf,
@@ -81,7 +90,8 @@ export default function useFormController() {
       await mutateAsync({
         name,
         cpf,
-        EPIS: EPIS?.filter((epi) => epi.EPI && epi.activity && epi.numberCA) || [],
+        EPIS:
+          EPIS?.filter((epi) => epi.EPI && epi.activity && epi.numberCA) || [],
         dateOfBirth,
         empPosition,
         genre,
@@ -95,9 +105,11 @@ export default function useFormController() {
       dispatch(hideForm());
       setNotUsesEPIchecked(false);
       queryClient.invalidateQueries(["employees"]);
+      toast.success("Funcionário cadastrado com sucesso!");
       reset();
     } catch {
       reset();
+      toast.error("Erro ao cadastrar funcionário!");
     }
   });
 
@@ -109,6 +121,7 @@ export default function useFormController() {
     epis,
     activities,
     positions,
+    isError,
     formIsVisible,
     fields,
     dispatch,

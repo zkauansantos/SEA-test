@@ -8,6 +8,7 @@ import { persistor, store } from "./app/redux/dashboard/store";
 import Dashboard from "./app/view/Dashboard";
 
 import "./styles/styles.css";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
   return (
@@ -15,6 +16,8 @@ export default function App() {
       <PersistGate persistor={persistor} loading={null}>
         <QueryClientProvider client={queryClient}>
           <Dashboard />
+
+          <Toaster position='top-center' reverseOrder={false} />
         </QueryClientProvider>
       </PersistGate>
     </Provider>
